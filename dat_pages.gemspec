@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Jake Sarate"]
   spec.email         = ["jake.sarate@dat.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{Page object library for Appium}
+  spec.description   = %q{Page object library for Appium}
+  spec.homepage      = "https://github.com/jakesa/dat_pages"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
@@ -29,4 +29,9 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.12"
   spec.add_development_dependency "rake", "~> 10.0"
+  spec.add_dependency 'appium_lib'
+  spec.add_development_dependency 'pry'
+  spec.add_development_dependency 'thor'
+  spec.add_development_dependency 'rspec'
+
 end
