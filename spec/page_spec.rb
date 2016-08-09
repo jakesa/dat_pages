@@ -1,6 +1,6 @@
 
 
-describe DATPages::Page do
+describe DATPages::PageObjects::Page do
 
   before(:all) do
     DATPages.reset
@@ -23,15 +23,19 @@ describe DATPages::Page do
   end
 
   it 'should respond to #self.element' do
-    expect(DATPages::Page.respond_to? :element).to eq true
+    expect(DATPages::PageObjects::Page.respond_to? :element).to eq true
   end
 
   it 'should respomd to #self.page' do
-    expect(DATPages::Page.respond_to? :page).to eq true
+    expect(DATPages::PageObjects::Page.respond_to? :page).to eq true
   end
 
   it 'should respond to #self.section' do
-    expect(DATPages::Page.respond_to? :section).to eq true
+    expect(DATPages::PageObjects::Page.respond_to? :section).to eq true
+  end
+
+  it 'should respond to #ios_element' do
+    expect(DATPages::PageObjects::Page.respond_to? :ios_element).to eq true
   end
 
 

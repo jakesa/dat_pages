@@ -1,15 +1,12 @@
-require 'appium_lib'
+
 
 module DATPages
 
-  module Element
+  module PageObjects
 
-    Appium.promote_singleton_appium_methods self
+    # this will be the class that wraps elements in custom behavior later if needed
+    class Element
 
-    def self.element(name, selector)
-      define_method(name) do
-        $driver.find_element(selector)
-      end
     end
 
   end

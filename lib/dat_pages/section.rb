@@ -1,20 +1,18 @@
-require_relative 'element'
-require 'appium_lib'
+require_relative 'element_container'
 
 module DATPages
 
-  class Section
-    Appium.promote_appium_methods self
-    include DATPages::Element
+  module PageObjects
 
-    def self.section(name, klass, selector)
+    class Section
+      extend DATPages::ElementContainer
+
+      def initialize
+
+      end
 
     end
-
-    def initialize
-
-    end
-
   end
+
 
 end

@@ -36,6 +36,9 @@ module DATPages
           $driver.custom_url = DATPages.config.url
         end
         $driver.start_driver
+
+        # give all the page objects the appium methods
+        Appium.promote_singleton_appium_methods DATPages::PageObjects
         true
       rescue =>e
         puts e
