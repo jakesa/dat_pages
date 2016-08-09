@@ -44,5 +44,9 @@ module DATPages
       end
     end
 
+    def stop_driver
+      $driver.driver_quit
+    end
+
   end
 end

@@ -4,12 +4,10 @@ module DATPages
 
   class AppiumServer
 
+    attr_accessor :server_wait_time
     # TODO: think about how I want this to work with a remote server
-    def initialize(_start = true, report = false)
-      if _start == true
-        start
-        start_reporting
-      end
+    def initialize(report = false, server_wait_time=3)
+      @server_wait_time = server_wait_time
       @report = report
     end
 
@@ -22,7 +20,7 @@ module DATPages
         Process.wait2 @server_process.pid
         @server_process = nil
         stop_reporting
-        sleep 2
+        sleep @server_wait_time
         true
       end
     end
@@ -33,7 +31,7 @@ module DATPages
         false
       else
         @server_process = Object::IO.popen "appium"
-        sleep 2
+        sleep @server_wait_time
         start_reporting
         true
       end

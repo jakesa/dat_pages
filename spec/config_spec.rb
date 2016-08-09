@@ -27,6 +27,14 @@ describe DATPages::Config do
     expect(config.os).to eq 'android'
   end
 
+  it 'should default to localhost for the server address' do
+    expect(DATPages::Config.new.server_address).to eq 'localhost'
+  end
+
+  it 'should default to 4723 for the server port' do
+    expect(DATPages::Config.new.server_port).to eq 4723
+  end
+
   it 'should set the os to the os specified' do
     config = DATPages::Config.new('ios')
     expect(config.os).to eq 'ios'
@@ -51,6 +59,20 @@ describe DATPages::Config do
     config.server_address = server_address
     config.server_port = server_port
     expect(config.url).to eq "http://#{server_address}:#{server_port}/wd/hub"
+  end
+
+  it 'should respond to #server_wait_time' do
+    expect(DATPages::Config.new.respond_to? :server_wait_time).to eq true
+  end
+
+  specify 'the server_wait_time should default to 3' do
+    expect(DATPages::Config.new.server_wait_time).to eq 3
+  end
+
+  specify 'I should be able to set the server_wait_time' do
+    config = DATPages::Config.new
+    config.server_wait_time = 10
+    expect(config.server_wait_time).to eq 10
   end
 
 end

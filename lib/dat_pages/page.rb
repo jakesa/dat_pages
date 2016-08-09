@@ -1,15 +1,13 @@
-require_relative 'element'
-require_relative 'section'
+require_relative 'element_container'
 require 'appium_lib'
 
 module DATPages
 
   class Page
-    Appium.promote_appium_methods self
-    include DATPages::Element
-    include DATPages::Section
+    extend DATPages::ElementContainer
 
     def initialize
+      Appium.promote_appium_methods self.class
       @driver = $driver
     end
 
