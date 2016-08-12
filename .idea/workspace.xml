@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0946674f-11f7-487a-91d9-b83dec5fc6bf" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/dat_pages/config.rb" afterPath="$PROJECT_DIR$/lib/dat_pages/config.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/config_spec.rb" afterPath="$PROJECT_DIR$/spec/config_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/dat_pages.rb" afterPath="$PROJECT_DIR$/lib/dat_pages.rb" />
     </list>
     <ignored path="dat_pages.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -96,21 +94,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config_spec.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="config_spec.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/spec/config_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.43910256">
-              <caret line="71" column="59" selection-start-line="71" selection-start-column="59" selection-end-line="71" selection-end-column="59" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="67" column="54" selection-start-line="67" selection-start-column="54" selection-end-line="67" selection-end-column="54" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dat_pages.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="dat_pages.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/dat_pages.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.86538464">
+              <caret line="54" column="13" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -140,7 +138,6 @@
         <option value="$PROJECT_DIR$/spec/capabilities_spec.rb" />
         <option value="$PROJECT_DIR$/spec/appium_server_spec.rb" />
         <option value="$PROJECT_DIR$/lib/dat_pages/appium_server.rb" />
-        <option value="$PROJECT_DIR$/lib/dat_pages.rb" />
         <option value="$PROJECT_DIR$/spec/page_spec.rb" />
         <option value="$PROJECT_DIR$/spec/spec_helper.rb" />
         <option value="$PROJECT_DIR$/lib/dat_pages/element_container.rb" />
@@ -151,6 +148,7 @@
         <option value="$PROJECT_DIR$/spec/dat_pages_spec.rb" />
         <option value="$PROJECT_DIR$/lib/dat_pages/config.rb" />
         <option value="$PROJECT_DIR$/spec/config_spec.rb" />
+        <option value="$PROJECT_DIR$/lib/dat_pages.rb" />
       </list>
     </option>
   </component>
@@ -783,14 +781,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/dat_pages.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/spec/dat_pages_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -817,8 +807,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/spec/config_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.43910256">
-          <caret line="71" column="59" selection-start-line="71" selection-start-column="59" selection-end-line="71" selection-end-column="59" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="67" column="54" selection-start-line="67" selection-start-column="54" selection-end-line="67" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/dat_pages.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.86538464">
+          <caret line="54" column="13" selection-start-line="54" selection-start-column="13" selection-end-line="54" selection-end-column="13" />
           <folding />
         </state>
       </provider>
