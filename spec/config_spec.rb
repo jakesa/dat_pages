@@ -75,4 +75,31 @@ describe DATPages::Config do
     expect(config.server_wait_time).to eq 10
   end
 
+  it 'should create a method if it is missing and follows the name= pattern' do
+    config = DATPages::Config.new
+    expect(begin
+      config.cucumber_options = ['these', 'are', 'the', 'options']
+      true
+    rescue => e
+      puts e
+      puts e.backtrace
+      false
+    end).to be true
+    expect(config.respond_to? :cucumber_options=).to eq true
+    expect(config.respond_to? :cucumber_options).to eq true
+    expect(config.cucumber_options).to eq ['these', 'are', 'the', 'options']
+  end
+
+  it 'should raise a no method error if the method name doesnt have an = at the end' do
+    config = DATPages::Config.new
+    error = (
+    begin
+      config.this_should_not_work
+    rescue =>e
+     e
+    end
+    )
+    expect(error.class).to eq NoMethodError
+  end
+
 end
