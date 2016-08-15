@@ -3,6 +3,7 @@
 module DATPages
 
   module ElementContainer
+    # TODO: Throw an error if the driver hasnt been started
 
     # valid selector_types = [:id, :xpath, :text]
     def element(name, selector, selector_type=:id)
