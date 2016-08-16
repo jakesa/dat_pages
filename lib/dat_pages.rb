@@ -31,14 +31,24 @@ module DATPages
   # start the local appium server
   # @return [Boolean]
   def start_server
+    if remote_server?
+      puts '[INFO] Server not started. Setting indicated a remote server was specified.'
+      false
+    else
       @server ||= DATPages::AppiumServer.new
       @server.start
+    end
   end
 
   # stop the local appium server
   # @return [Boolean]
   def stop_server
-    @server.stop
+    if @server.nil?
+      puts '[INFO] No server has been started.'
+      false
+    else
+      @server.stop
+    end
   end
 
   # check to see if a remote server has been sepcified
