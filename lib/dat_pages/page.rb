@@ -5,9 +5,9 @@ module DATPages
   module PageObjects
     class Page
       extend DATPages::ElementContainer
-
-      def initialize
-        @driver = $driver
+      attr_accessor :selector
+      def initialize(selector=nil)
+        @selector = selector
       end
 
       # method for catching exceptions
@@ -23,6 +23,19 @@ module DATPages
         end
       end
 
+      def displayed?
+        # TODO: there may be a better way to do this
+        raise 'The selector property must be set in order to use the #displayed? method' if @selector.nil?
+        begin
+          return $driver.wait_true(DATPages.config.default_wait_time) { $driver.find_element(:id, @selector).displayed? }
+        rescue
+          begin
+            $driver.wait_true(DATPages.config.default_wait_time) { $driver.find_element(:xpath, @selector).displayed? }
+          rescue
+            false
+          end
+        end
+      end
 
     end
   end

@@ -18,8 +18,8 @@ module DATPages
       class_eval(%Q(private def #{name.to_s}; $driver.ele_by_json_visible_exact("#{uielement}", "#{value}");end))
     end
 
-    def section(name, class_name)
-      class_eval("private def #{name.to_s};@#{name.to_s} ||= #{class_name}.new;end;")
+    def section(name, class_name, selector=nil)
+      class_eval(%Q(private def #{name.to_s};@#{name.to_s} ||= #{class_name}.new("#{selector}");end;))
     end
 
     # note: this will probably change to its own defined method later

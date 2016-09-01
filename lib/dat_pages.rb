@@ -1,15 +1,32 @@
-require 'dat_pages/version'
+require_relative 'dat_pages/version'
 require_relative 'dat_pages/config'
 require_relative 'dat_pages/appium_server'
+require_relative 'dat_pages/driver'
+require_relative '../lib/dat_pages/page_objects'
 
 module DATPages
 
   self.extend ::DATPages
 
+  # get the config object
+  # @return [DATPages::Config]
   def config
     @config ||= DATPages::Config.new
   end
 
+  # specify the config object
+  # takes a block to configure the object
+  # Example:
+  #   DATPages.configure do |config|
+  #     config.os = 'ios'
+  #     config.desired_caps.autoAcceptAlerts = true
+  #     config.desired_caps.fullReset = true
+  #     config.desired_caps.platformName = 'ios'
+  #     config.desired_caps.deviceName = 'iPhone 6'
+  #     config.desired_caps.platformVersion = '9.3'
+  #     config.desired_caps.app = '/Users/jakesa/Library/Developer/Xcode/DerivedData/mobile-fexownuxytnyvddyyujpnerxqobm/Build/Products/Debug-iphonesimulator/Trucker.app'
+  #   end
+  # @return [DATPages::Config]
   def configure
     @config ||= DATPages::Config.new
     yield(@config) if block_given?
@@ -51,7 +68,7 @@ module DATPages
     end
   end
 
-  # check to see if a remote server has been sepcified
+  # check to see if a remote server has been specified
   # @return [Boolean]
   def remote_server?
     if DATPages.config.server_address != nil && DATPages.config.server_address != 'localhost'
@@ -71,34 +88,39 @@ module DATPages
   # @return [Boolean]
   def start_driver
     # start the driver with the desired caps
-    begin
-      Appium::Driver.new(DATPages.config.desired_caps.to_hash)
-      if DATPages.config.server_address != 'localhost'
-        $driver.custom_url = DATPages.config.url
-      end
-      $driver.start_driver
-
-      # give all the page objects the appium methods
-      Appium.promote_singleton_appium_methods DATPages::PageObjects
-      true
-    rescue =>e
-      puts e
-      puts e.backtrace
-      false
-    end
+    DATPages::Driver.instance.start
   end
 
   # stop the driver
+  # @return [Boolean]
   def stop_driver
-    $driver.driver_quit
+    DATPages::Driver.instance.stop
   end
 
   # get a reference to the current driver
-  #--
-  # TODO: Should I wrap the driver it a custom driver class? I probably should
-  #++
+  # @return [DATPages::Driver]
   def driver
-    $driver
+    DATPages::Driver.instance
   end
+
+  # close the application
+  # @return [Boolean]
+  def close_app
+    DATPages::Driver.instance.close_app
+  end
+
+  # open the application
+  # @return [Boolean]
+  def open_app
+    DATPages::Driver.instance.open_app
+  end
+
+  # send app to the background
+  # it will come back to the foreground when the timer has run out
+  # @param seconds [Int] the amount of time in seconds you want the app to be in the background
+  def send_app_to_background(seconds)
+    DATPages::Driver.instance.send_app_to_background seconds
+  end
+
 
 end
