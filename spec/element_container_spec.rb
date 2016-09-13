@@ -25,8 +25,12 @@ describe DATPages::ElementContainer do
 
   end
 
-  class DummySection;end
-  class DummyPage;end
+  class DummySection
+    def initialize(*args)
+    end
+  end
+  class DummyPage < DummySection
+  end
 
   class DummyClass
     extend DATPages::ElementContainer

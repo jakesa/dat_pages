@@ -5,7 +5,7 @@ require 'dat_pages/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "dat_pages"
-  spec.version       = DatPages::VERSION
+  spec.version       = DATPages::VERSION
   spec.authors       = ["Jake Sarate"]
   spec.email         = ["jake.sarate@dat.com"]
 
@@ -33,5 +33,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'pry'
   spec.add_development_dependency 'thor'
   spec.add_development_dependency 'rspec'
+  spec.add_dependency 'capybara'
+  spec.add_dependency 'appium_capybara'
+  spec.add_development_dependency 'sinatra'
 
 end

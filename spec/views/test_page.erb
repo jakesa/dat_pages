@@ -1,0 +1,89 @@
+<script>
+    var delay=2000;
+
+    function addElement(element,id){
+        setTimeout(function(){
+            var newElement = document.createElement(element);
+            newElement.setAttribute("name", id);
+            newElement.setAttribute("style", "background-color: green; width:60px; height:10px");
+            console.log(newElement);
+            document.body.appendChild(newElement);
+        }, delay);
+    };
+
+    function removeElement(id){
+        setTimeout(function(){
+            var elements = document.getElementsByName(id);
+            console.log(elements);
+            if(elements[0] == null){
+                return
+            }else{
+                document.body.removeChild(elements[0]);
+            }
+        },delay);
+    };
+
+    function hideElement(name){
+        setTimeout(function(){
+            var elements = document.getElementsByName(name);
+            if(elements[0] == null){
+                return
+            }else{
+                elements[0].setAttribute("hidden", "hidden");
+
+            }
+        },delay);
+
+    };
+        function showElement(name){
+            setTimeout(function(){
+                var elements = document.getElementsByName(name);
+                if(elements[0] == null){
+                    return
+                }else{
+                    elements[0].removeAttribute("hidden");
+                }
+            },delay);
+        };
+
+        function showOverlay(id){
+            var ele = document.getElementById(id);
+            ele.setAttribute("style","background-color: cadetblue");
+        };
+
+        function hideOverlay(id){
+            var ele = document.getElementById(id);
+            ele.setAttribute("style","background-color: darkred");
+        }
+
+</script>
+<h1>Hello World</h1>
+<br/>
+<table id="data">
+    <tr id="row1">
+        <td id="cell1">This</td>
+        <td id="cell2">is</td>
+        <td id="cell3">for</td>
+        <td hidden id="cell4">testing</td>
+    </tr>
+</table>
+<br/>
+<input type="text" id="address"/>
+<button id="submit" type="submit">Submit</button><br/>
+<input type="text" id="name"/>
+<ul>
+    <li>Name</li>
+    <li>Address</li>
+    <li>Phone</li>
+</ul><br/>
+<p id="story">
+  This is a paragraph of some text to test with
+</p>
+<div id="overlay" style="background-color: darkred" onmouseover="showOverlay('overlay')" onmouseout="hideOverlay('overlay')">
+  <h1>This is an overlay</h1>
+</div>
+<button id="disabled" type="submit" disabled>Disabled</button>
+<button id="add" onClick="addElement('div', 'newDiv')">Add Element</button>
+<button id="remove" onclick="removeElement('newDiv')">Remove Element</button>
+<button id="hide" onclick="hideElement('newDiv')">Hide Element</button>
+<button id="show" onclick="showElement('newDiv')">Show Element</button>
