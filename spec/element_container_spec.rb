@@ -34,12 +34,12 @@ describe DATPages::ElementContainer do
 
   class DummyClass
     extend DATPages::ElementContainer
-    element(:test, 'selector')
-    element(:test_by_text, 'text', :text)
-    ios_element(:test_2, 'UIElement', 'Email')
+    element(:test, :id, 'selector')
+    element(:test_by_text, :text, 'text')
+    # ios_element(:test_2, 'UIElement', 'Email')
     section(:section_1, DummySection)
     page(:page_1, DummyPage)
-    button(:submit, 'Submit')
+    # button(:submit, 'Submit')
   end
 
   def check_for_private_method?(klass, name)
@@ -67,9 +67,9 @@ describe DATPages::ElementContainer do
     expect(DummyClass.respond_to? :element).to eq true
   end
 
-  it 'should add #self.ios_element to a class' do
-    expect(DummyClass.respond_to? :ios_element).to eq true
-  end
+  # it 'should add #self.ios_element to a class' do
+  #   expect(DummyClass.respond_to? :ios_element).to eq true
+  # end
 
   it 'should add #self.section to a class' do
     expect(DummyClass.respond_to? :section).to eq true
@@ -99,13 +99,13 @@ describe DATPages::ElementContainer do
     expect(DummyClass.new.send(:page_1).class).to eq DummyPage
   end
 
-  it 'should add the #test_2 private instance method to the class' do
-    expect(check_for_private_method? DummyClass.new, :test_2).to eq true
-  end
+  # it 'should add the #test_2 private instance method to the class' do
+  #   expect(check_for_private_method? DummyClass.new, :test_2).to eq true
+  # end
 
-  it 'should add the #submit private instance method to the class' do
-    expect(check_for_private_method? DummyClass.new, :submit).to eq true
-  end
+  # it 'should add the #submit private instance method to the class' do
+  #   expect(check_for_private_method? DummyClass.new, :submit).to eq true
+  # end
 
   specify 'An element defined using :text as the selector type should work' do
     expect(check_for_private_method? DummyClass.new, :test_by_text).to eq true

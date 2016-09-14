@@ -34,9 +34,9 @@ describe DATPages::PageObjects::Page do
     expect(DATPages::PageObjects::Page.respond_to? :section).to eq true
   end
 
-  it 'should respond to #ios_element' do
-    expect(DATPages::PageObjects::Page.respond_to? :ios_element).to eq true
-  end
+  # it 'should respond to #ios_element' do
+  #   expect(DATPages::PageObjects::Page.respond_to? :ios_element).to eq true
+  # end
 
   it 'should take selector' do
     result = nil

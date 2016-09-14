@@ -44,51 +44,51 @@ describe DATPages do
     expect(DATPages.respond_to? :server).to eq true
   end
 
-  it 'should respond to #start_driver' do
-    expect(DATPages.respond_to? :start_driver).to eq true
-  end
+  # it 'should respond to #start_driver' do
+  #   expect(DATPages.respond_to? :start_driver).to eq true
+  # end
 
-  specify '#server should return a server object if the server address is set to localhost' do
-    DATPages.start_server
-    server_class = DATPages.server.class
-    DATPages.stop_server
-    expect(server_class).to eq DATPages::AppiumServer
-  end
+  # specify '#server should return a server object if the server address is set to localhost' do
+  #   DATPages.start_server
+  #   server_class = DATPages.server.class
+  #   DATPages.stop_server
+  #   expect(server_class).to eq DATPages::AppiumServer
+  # end
 
-  specify '#remote_server should return a url if the server address is something other than localhost' do
-    DATPages.configure do |config|
-      config.server_address = '127.0.0.1'
-    end
-    expect(DATPages.remote_server).to eq DATPages.config.url
-  end
+  # specify '#remote_server should return a url if the server address is something other than localhost' do
+  #   DATPages.configure do |config|
+  #     config.server_address = '127.0.0.1'
+  #   end
+  #   expect(DATPages.remote_server).to eq DATPages.config.url
+  # end
 
-  specify '#remote_server? should return true if the server address is something other than localhost' do
-    DATPages.configure do |config|
-      config.server_address = '127.0.0.1'
-    end
-    expect(DATPages.remote_server?).to eq true
-  end
+  # specify '#remote_server? should return true if the server address is something other than localhost' do
+  #   DATPages.configure do |config|
+  #     config.server_address = '127.0.0.1'
+  #   end
+  #   expect(DATPages.remote_server?).to eq true
+  # end
 
-  specify '#start_server should start the server' do
-    DATPages.start_server
-    status = DATPages.server.status
-    DATPages.stop_server
-    expect(status).to eq 'running'
-  end
+  # specify '#start_server should start the server' do
+  #   DATPages.start_server
+  #   status = DATPages.server.status
+  #   DATPages.stop_server
+  #   expect(status).to eq 'running'
+  # end
 
-  specify '#stop_server should stop the server' do
-    DATPages.start_server
-    begin
-      status = DATPages.server.status
-      expect(status).to eq 'running'
-    rescue => e
-      puts e
-      puts e.backtrace
-      server.stop
-    end
-    DATPages.stop_server
-    expect(DATPages.server.status).to eq 'stopped'
-  end
+  # specify '#stop_server should stop the server' do
+  #   DATPages.start_server
+  #   begin
+  #     status = DATPages.server.status
+  #     expect(status).to eq 'running'
+  #   rescue => e
+  #     puts e
+  #     puts e.backtrace
+  #     server.stop
+  #   end
+  #   DATPages.stop_server
+  #   expect(DATPages.server.status).to eq 'stopped'
+  # end
 
 
   # Note: This test isnt one that should be run with every commit as it requires that an app be present and an emulator be running

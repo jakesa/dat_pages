@@ -1,5 +1,5 @@
 require 'appium_lib'
-require_relative '../../lib/dat_pages'
+require_relative '../../../lib/dat_pages'
 
 module DATPages
 
@@ -16,6 +16,7 @@ module DATPages
     # launch the appium driver
 
     def initialize
+
       @started = (begin
         Appium::Driver.new(DATPages.config.desired_caps.to_hash)
         if DATPages.config.server_address != 'localhost'
@@ -24,7 +25,6 @@ module DATPages
         $driver.start_driver
         @app_open = true
         # give all the page objects the appium methods
-        Appium.promote_singleton_appium_methods DATPages::PageObjects
         true
       rescue =>e
         puts e
