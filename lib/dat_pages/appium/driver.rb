@@ -13,12 +13,15 @@ module DATPages
       @instance = Driver.new
     end
 
+    def self.dispose
+      @instance = nil
+    end
+
     # launch the appium driver
 
     def initialize
-
       @started = (begin
-        Appium::Driver.new(DATPages.config.desired_caps.to_hash)
+        Object::Appium::Driver.new(DATPages.config.desired_caps.to_hash)
         if DATPages.config.server_address != 'localhost'
           $driver.custom_url = DATPages.config.url
         end
@@ -33,6 +36,19 @@ module DATPages
       end)
     end
 
+    def dispose
+      stop
+      self.class.dispose
+    end
+
+    def status
+      if @started
+        'Started'
+      elsif @started.nil? || !@started
+        'Not Started'
+      end
+    end
+
     # start the driver if it is not already started
     def start
       if @started
@@ -44,7 +60,7 @@ module DATPages
           @app_open = true
           @started = true
         rescue
-          Driver.reset
+          Object::Appium::Driver.reset
         end
         @started
       end

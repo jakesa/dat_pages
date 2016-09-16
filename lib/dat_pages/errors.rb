@@ -42,7 +42,7 @@ module DATPages
 
     class NoDriverSpecified < StandardError
       def initialize
-        super 'No driver was specified. Set DATPages.config.driver_for with the driver you want to initialize (Example: :firefox)'
+        super 'No driver was specified. Set DATPages.config.driver_for with the driver you want to initialize (Example: :appium, :local_browser, :local_mobile_browser)'
       end
     end
 

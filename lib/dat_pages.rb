@@ -1,10 +1,11 @@
 require_relative 'dat_pages/version'
 require_relative 'dat_pages/config'
 require_relative 'dat_pages/appium/appium_server'
-require_relative '../lib/dat_pages/page_objects'
-require_relative 'dat_pages/errors'
-require_relative 'dat_pages/web_driver/web_driver'
 require_relative '../lib/dat_pages/driver_connection'
+require_relative 'dat_pages/web_driver/web_driver'
+require_relative '../lib/dat_pages/web_driver/page_objects'
+require_relative 'dat_pages/appium/appium'
+require_relative '../lib/dat_pages/appium/page_objects'
 
 module DATPages
 

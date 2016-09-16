@@ -1,5 +1,17 @@
 require 'sinatra'
+require 'capybara/dsl'
 
+Capybara.app_host = 'http://localhost:4567'
+Capybara.register_driver :selenium do |app|
+  Capybara::Selenium::Driver.new app, :browser => :firefox
+end
+Capybara.default_driver = :selenium
+
+def go_to(url)
+  driver = Capybara.current_session
+  driver.visit(url)
+  driver
+end
 
 get '/' do
   erb :test_page
@@ -34,7 +46,7 @@ class Server
       puts 'Server already running'
       false
     else
-      @server_process = Object::IO.popen "ruby ./spec/sinatra_server.rb"
+      @server_process = Object::IO.popen 'ruby ./spec/web_driver/sinatra_server.rb'
       sleep @server_wait_time
       start_reporting
       true

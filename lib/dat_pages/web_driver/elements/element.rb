@@ -1,8 +1,8 @@
 require 'capybara'
 require 'capybara/dsl'
-require_relative '../errors'
+require_relative '../../errors'
 
-  class Element
+  class DATPages::WebDriver::PageObjects::Element
     include Capybara::DSL
 
     attr_reader :parent, :locator, :find_by
@@ -101,6 +101,8 @@ require_relative '../errors'
       ##++
       obj.visible?
     end
+
+    alias_method :displayed?, :visible?
 
     # Is UI object hidden (not visible)?
     #

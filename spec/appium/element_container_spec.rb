@@ -1,5 +1,5 @@
 
-describe DATPages::ElementContainer do
+describe DATPages::Appium::PageObjects::ElementContainer do
 
   class DummyDriver
     def find_element(by, selector)
@@ -33,12 +33,12 @@ describe DATPages::ElementContainer do
   end
 
   class DummyClass
-    extend DATPages::ElementContainer
+    extend DATPages::Appium::PageObjects::ElementContainer
     element(:test, :id, 'selector')
     element(:test_by_text, :text, 'text')
     # ios_element(:test_2, 'UIElement', 'Email')
-    section(:section_1, DummySection)
-    page(:page_1, DummyPage)
+    section(:section_1, DummySection, 'selector')
+    page(:page_1, DummyPage, 'url?')
     # button(:submit, 'Submit')
   end
 

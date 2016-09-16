@@ -1,1 +1,3 @@
-module DATPages::PageObjects::WebDriver;end
+module DATPages::WebDriver
+
+end

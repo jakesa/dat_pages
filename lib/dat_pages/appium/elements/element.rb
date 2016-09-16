@@ -1,6 +1,5 @@
 require 'appium_lib'
-require_relative 'appium'
-class Element
+class DATPages::Appium::PageObjects::Element
 
 
   attr_reader :parent, :locator, :find_by
@@ -18,7 +17,7 @@ class Element
       :xpath             => 'xpath'
   }
 
-  def initialize(locator, parent=nil, find_by=:text)
+  def initialize(locator, parent=nil, find_by=:id)
     @parent  = parent
     @locator = locator
     @find_by = find_by

@@ -1,2 +1,0 @@
-
-module DATPages::PageObjects;end

@@ -1,6 +1,9 @@
 
 describe DATPages::DriverConnection do
 
+  after :all do
+    DATPages.driver.dispose
+  end
 
   it 'should raise an error if driver_for is not specified' do
     expect(begin
@@ -21,7 +24,6 @@ describe DATPages::DriverConnection do
            end).to be_truthy
   end
 
-
   it 'should initialize appium' do
     DATPages.configure do |config|
       config.driver_for = :appium
@@ -34,7 +36,8 @@ describe DATPages::DriverConnection do
       config.desired_caps.app = '/Users/jakesa/Library/Developer/Xcode/DerivedData/mobile-fexownuxytnyvddyyujpnerxqobm/Build/Products/Debug-iphonesimulator/Trucker.app'
     end
     DATPages::DriverConnection.initialize_driver
-    DATPages.driver.stop
+    result = DATPages.driver.stop
+    expect(result).to be true
   end
 
 

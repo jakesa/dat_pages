@@ -1,1 +1,1 @@
-module DATPages::PageObjects::Appium;end
+module DATPages::Appium;end

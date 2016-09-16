@@ -14,7 +14,7 @@ module DATPages
       driver_for = DATPages.config.driver_for
       raise DATPages::Errors::NoDriverSpecified.new if driver_for.nil?
 
-
+      # TODO: Could move this out to its own class or module specific to the configuring of different drivers
       begin
         self.send(driver_for.to_sym)
       rescue NoMethodError
@@ -28,12 +28,10 @@ module DATPages
     private
 
     def self.appium
-      require_relative '../../lib/dat_pages/appium/element'
       DATPages::Driver.instance
     end
 
     def self.local_browser
-      require_relative 'web_driver/element'
       set_app_host
 
       Capybara.default_driver = :selenium
@@ -50,7 +48,6 @@ module DATPages
     end
 
     def self.local_mobile_browser
-      require_relative 'web_driver/element'
       set_app_host
       device = get_device
       Capybara.default_driver = :selenium

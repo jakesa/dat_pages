@@ -1,6 +1,6 @@
 
 
-describe DATPages::PageObjects::Page do
+describe DATPages::Appium::PageObjects::Page do
 
   # before(:all) do
   #   DATPages.reset
@@ -23,15 +23,15 @@ describe DATPages::PageObjects::Page do
   # end
 
   it 'should respond to #self.element' do
-    expect(DATPages::PageObjects::Page.respond_to? :element).to eq true
+    expect(DATPages::Appium::PageObjects::Page.respond_to? :element).to eq true
   end
 
   it 'should respomd to #self.page' do
-    expect(DATPages::PageObjects::Page.respond_to? :page).to eq true
+    expect(DATPages::Appium::PageObjects::Page.respond_to? :page).to eq true
   end
 
   it 'should respond to #self.section' do
-    expect(DATPages::PageObjects::Page.respond_to? :section).to eq true
+    expect(DATPages::Appium::PageObjects::Page.respond_to? :section).to eq true
   end
 
   # it 'should respond to #ios_element' do
@@ -41,7 +41,7 @@ describe DATPages::PageObjects::Page do
   it 'should take selector' do
     result = nil
     begin
-      DATPages::PageObjects::Page.new('this_is_a_selector')
+      DATPages::Appium::PageObjects::Page.new('this_is_a_selector')
       result = true
     rescue
       result = false
@@ -50,12 +50,12 @@ describe DATPages::PageObjects::Page do
   end
 
   it 'should respond to #displayed?' do
-    expect(DATPages::PageObjects::Page.new.respond_to? :displayed?).to be true
+    expect(DATPages::Appium::PageObjects::Page.new('selector').respond_to? :displayed?).to be true
   end
 
   it 'should raise an error if #displayed? is called and a selector is not set' do
     begin
-      section = DATPages::PageObjects::Page.new
+      section = DATPages::Appium::PageObjects::Page.new('selector')
       section.displayed?
     rescue => e
       @e = e
