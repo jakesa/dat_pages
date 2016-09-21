@@ -7,14 +7,10 @@ class DATPages::Appium::PageObjects::Element
   FINDERS = {
       :class             => 'class name',
       :class_name        => 'class name',
-      :css               => 'css selector',
       :id                => 'id',
-      :link              => 'link text',
-      :link_text         => 'link text',
       :name              => 'name',
-      :partial_link_text => 'partial link text',
-      :tag_name          => 'tag name',
-      :xpath             => 'xpath'
+      :xpath             => 'xpath',
+      :value             => 'value'
   }
 
   def initialize(locator, parent=nil, find_by=:id)
@@ -56,7 +52,20 @@ class DATPages::Appium::PageObjects::Element
   end
 
   def displayed?
-    find_element.displayed?
+    if exists?
+      find_element.displayed?
+    else
+      false
+    end
+  end
+
+  def exists?
+    begin
+      find_element
+    rescue Selenium::WebDriver::Error::NoSuchElementError
+      return false
+    end
+    true
   end
 
   def [](attribute)
@@ -67,11 +76,13 @@ class DATPages::Appium::PageObjects::Element
   private
   # Note: all finds are done with xpath. If a css value is passed in, it is converted to xpath
   def find_element
-   raise 'Not a valid Finder' unless FINDERS.include? @find_by
-   if @parent != nil
-     $driver.find_element(@parent.find_by, @parent.locator).find_element(@find_by, @locator)
-   else
-     $driver.find_element(@find_by, @locator)
+   raise "Not a valid Finder: #{find_by.to_sym}" unless FINDERS.include? find_by.to_sym
+   # TODO: will add more as needed
+   case find_by.to_sym
+     when :id
+       $driver.find_element(find_by.to_sym, locator)
+     when :value
+       $driver.find(locator)
    end
   end
 
