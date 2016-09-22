@@ -36,10 +36,10 @@ describe DATPages::Appium::PageObjects::ElementContainer do
     extend DATPages::Appium::PageObjects::ElementContainer
     element(:test, :id, 'selector')
     element(:test_by_text, :text, 'text')
-    # ios_element(:test_2, 'UIElement', 'Email')
     section(:section_1, DummySection, 'selector')
     page(:page_1, DummyPage, 'url?')
-    # button(:submit, 'Submit')
+    locator 'this is a locator'
+    find_by :id
   end
 
   def check_for_private_method?(klass, name)
@@ -111,6 +111,21 @@ describe DATPages::Appium::PageObjects::ElementContainer do
     expect(check_for_private_method? DummyClass.new, :test_by_text).to eq true
   end
 
+  it 'should respond to locator' do
+    expect(DummyClass.respond_to? :locator).to eq true
+  end
+
+  it 'should respond to find_by' do
+    expect(DummyClass.respond_to? :find_by).to eq true
+  end
+
+  it 'should return a locator' do
+    expect(DummyClass.new.locator).to eq 'this is a locator'
+  end
+
+  it 'should return the find_by value' do
+    expect(DummyClass.new.find_by.to_sym).to eq :id
+  end
 
 
 
