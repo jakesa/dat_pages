@@ -1,13 +1,16 @@
 require_relative '../../errors'
+require_relative 'drop_down_element'
 
 module DATPages
 
   module Appium::PageObjects::ElementContainer
 
+    # meant to be used with the DATPages::Page object
     def locator(locator)
       class_eval(%Q(def locator; @locator = "#{locator.to_sym}";end))
     end
 
+    # meant to be used with the DATPages::Page object
     def find_by(type)
       class_eval(%Q(def find_by; @find_by = "#{type.to_sym}";end))
     end
@@ -17,9 +20,14 @@ module DATPages
       class_eval(%Q(private def #{args[:name].to_s}; @#{args[:name].to_s} ||= DATPages::Appium::PageObjects::Element.new("#{args[:locator]}", self, "#{args[:find_by].to_sym}");end))
     end
 
+    def drop_down(*args)
+      args = parse_element_args(args)
+      class_eval(%Q(private def #{args[:name].to_s}; @#{args[:name].to_s} ||= DATPages::Appium::PageObjects::DropDownElement.new("#{args[:locator]}", self, "#{args[:find_by].to_sym}");end))
+    end
+
     def section(*args)
       args = parse_section_args args
-      class_eval(%Q(private def #{args[:name].to_s};@#{args[:name].to_s} ||= #{args[:class_name]}.new("#{args[:locator]}", self, "#{args[:find_by].to_sym}");end))
+      class_eval(%Q(def #{args[:name].to_s};@#{args[:name].to_s} ||= #{args[:class_name]}.new("#{args[:locator]}", self, "#{args[:find_by].to_sym}");end))
     end
 
     # note: this will probably change to its own defined method later

@@ -40,6 +40,7 @@ describe DATPages::Appium::PageObjects::ElementContainer do
     page(:page_1, DummyPage, 'url?')
     locator 'this is a locator'
     find_by :id
+    drop_down :test_drop_down,'test_selector'
   end
 
   def check_for_private_method?(klass, name)
@@ -79,12 +80,20 @@ describe DATPages::Appium::PageObjects::ElementContainer do
     expect(DummyClass.respond_to? :page).to eq true
   end
 
+  it 'should add #self.drop_down to a class' do
+    expect(DummyClass.respond_to? :drop_down).to eq true
+  end
+
   it 'should add the #test private instance method to the class' do
     expect(check_for_private_method?(DummyClass.new, :test)).to eq true
   end
 
   it 'should add the #section_1 private instance method to the class' do
     expect(check_for_private_method? DummyClass.new, :section_1).to eq true
+  end
+
+  it 'should add the #test_dropdown private instance method to the class' do
+    expect(check_for_private_method?(DummyClass.new, :test_drop_down)).to eq true
   end
 
   specify '#section_1 should return an instance of DummySection' do
@@ -126,10 +135,5 @@ describe DATPages::Appium::PageObjects::ElementContainer do
   it 'should return the find_by value' do
     expect(DummyClass.new.find_by.to_sym).to eq :id
   end
-
-
-
-
-
 
 end

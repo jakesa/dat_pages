@@ -1,9 +1,24 @@
 
 describe DATPages::DriverConnection do
 
-  after :all do
-    DATPages.driver.dispose
+
+  it 'should initialize appium' do
+    DATPages.reset
+    DATPages.configure do |config|
+      config.driver_for = :appium
+      config.os = 'android'
+      config.desired_caps.fullReset = true
+      config.desired_caps.platformName = 'android'
+      config.desired_caps.deviceName = 'android_6'
+      config.desired_caps.app = '/Users/jakesa/Downloads/fm-beta.apk'
+    end
+    DATPages::DriverConnection.initialize_driver
+    DATPages.driver.start
+    result = DATPages.driver.stop
+    expect(result).to be true
   end
+
+
 
   it 'should raise an error if driver_for is not specified' do
     expect(begin
@@ -22,22 +37,7 @@ describe DATPages::DriverConnection do
            rescue DATPages::Errors::DriverNotFound
              true
            end).to be_truthy
-  end
-
-  it 'should initialize appium' do
-    DATPages.configure do |config|
-      config.driver_for = :appium
-      config.os = 'ios'
-      config.desired_caps.autoAcceptAlerts = true
-      config.desired_caps.fullReset = true
-      config.desired_caps.platformName = 'ios'
-      config.desired_caps.deviceName = 'iPhone 6'
-      config.desired_caps.platformVersion = '9.3'
-      config.desired_caps.app = '/Users/jakesa/Library/Developer/Xcode/DerivedData/mobile-fexownuxytnyvddyyujpnerxqobm/Build/Products/Debug-iphonesimulator/Trucker.app'
-    end
-    DATPages::DriverConnection.initialize_driver
-    result = DATPages.driver.stop
-    expect(result).to be true
+    DATPages.reset
   end
 
 

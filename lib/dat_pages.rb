@@ -40,6 +40,10 @@ module DATPages
   # @return [DATPages::Config]
   def reset
     @config = DATPages::Config.new
+    if @driver
+      @driver.dispose
+      @driver = nil
+    end
   end
 
   # get the current instance of the server

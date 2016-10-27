@@ -8,13 +8,11 @@ describe DATPages::Driver do
 
   before :all do
     DATPages.configure do |config|
-          config.os = 'ios'
-          config.desired_caps.autoAcceptAlerts = true
+          config.os = 'android'
           config.desired_caps.fullReset = true
-          config.desired_caps.platformName = 'ios'
-          config.desired_caps.deviceName = 'iPhone 6'
-          config.desired_caps.platformVersion = '9.3'
-          config.desired_caps.app = '/Users/jakesa/Library/Developer/Xcode/DerivedData/mobile-fexownuxytnyvddyyujpnerxqobm/Build/Products/Debug-iphonesimulator/Trucker.app'
+          config.desired_caps.platformName = 'android'
+          config.desired_caps.deviceName = 'android_6'
+          config.desired_caps.app = '/Users/jakesa/Downloads/fm-beta.apk'
         end
     @driver = DATPages::Driver.instance
   end
@@ -70,6 +68,42 @@ describe DATPages::Driver do
   it 'should open the app if it is closed' do
     expect(@driver.open_app).to be true
   end
+
+  it 'should respond to set_location' do
+    expect(@driver.respond_to? :set_location).to be true
+  end
+
+  it 'should raise an error if :lat and :long are not passed in as argument keys' do
+    result = false
+    begin
+      @driver.set_location({})
+    rescue
+      result = true
+    end
+    expect(result).to be true
+  end
+
+  specify '#parse_element_args should take 1 argument' do
+    expect(@driver.send(:parse_element_args, ['locator'])).to be_truthy
+  end
+
+  specify '#parse_element_args should take 2 argument' do
+    expect(@driver.send(:parse_element_args, ['locator', :id])).to be_truthy
+  end
+
+  specify '#parse_element_args should not take 3 arguments' do
+    result = (
+    begin
+      @driver.send(:parse_element_args, ['locator', :id, 'bad param'])
+      false
+    rescue
+      true
+    end
+    )
+    expect(result).to be true
+  end
+
+
 
 
 end

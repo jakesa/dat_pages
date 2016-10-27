@@ -1,6 +1,6 @@
 require 'appium_lib'
 require_relative '../../../lib/dat_pages'
-
+# I am going to have to namespace this to Appium in the near future
 module DATPages
 
   class Driver
@@ -59,8 +59,9 @@ module DATPages
           $driver.start_driver
           @app_open = true
           @started = true
-        rescue
-          Object::Appium::Driver.reset
+        rescue =>e
+          raise e
+          # Object::Appium::Driver.restart
         end
         @started
       end
@@ -103,6 +104,12 @@ module DATPages
       end
     end
 
+    def set_location(loc)
+      raise 'location hash should include keys :lat, :long' unless loc.has_key?(:lat) && loc.has_key?(:long)
+      location = {latitude: loc[:lat], longitude: loc[:long]}
+      $driver.set_location location
+    end
+
     # send the app to the background for n seconds
     # @param seconds [Int] the number in seconds you want to send the app the background
     def send_app_to_background(seconds)
@@ -110,23 +117,61 @@ module DATPages
     end
 
     # waits for the given block to return true
-    # @param time [Integer] the time in seconds that the waiter will wait for
+    # @param seconds [Integer] the time in seconds that the waiter will wait for
     # @param block [Object] the block of code that you are waiting on
-    def wait_for(time, &block)
-      $driver.wait_true time, block
+    def wait_for(seconds, &block)
+      result = false
+      seconds.times do
+        begin
+          result = yield block
+          if result
+            return result
+          else
+            sleep 1
+          end
+        rescue
+          sleep 1
+          next
+        end
+      end
+      result
     end
 
     # TODO: I want to move all driver related tasks into the driver class. This includes finding elements. This method will be a catch all
     # for all of the different ways of finding an element so that the user only has to call one find method and the code executed will change
     # based on the parameters passed in
-    def find_element(array)
-      params = []
-      params << array
-      params.flatten!
-      if array.length > 1
-        $driver.find_element(array.shift, array.shift)
-      elsif array.length < 1
-        $driver.find(array.shift)
+    # TODO: write unit test
+    def find_element(*args)
+      args = parse_element_args args
+      element = DATPages::Appium::PageObjects::Element.new args[:locator], nil, args[:find_by]
+      if element.exists?
+        element
+      else
+        raise Selenium::WebDriver::Error::NoSuchElementError
+      end
+    end
+    #
+    # def find_elements(*args)
+    #   args = parse_element_args(args)
+    #   elements = $driver.find_elements(args[:find_by], args[:locator])
+    #   elements.each
+    # end
+
+    def get_element_count(*args)
+      args = parse_element_args args
+      $driver.find_elements(args[:find_by], args[:locator]).length
+    end
+
+    private
+
+    def parse_element_args(args)
+      case args.length
+        when 1
+          {locator: args[0], find_by: :id}
+        when 2
+          {find_by: args[0], locator: args[1]}
+        else
+          raise ArgumentError.new("Wrong number of arguments. Expected 1 or 2, got #{args.length}")
       end
     end
 

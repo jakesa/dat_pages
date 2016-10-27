@@ -14,9 +14,5 @@ describe DATPages::WebDriver::PageObjects::Page do
     expect(DATPages::WebDriver::PageObjects::Page.respond_to? :section).to eq true
   end
 
-  it 'should respond to #displayed?' do
-    expect(DATPages::WebDriver::PageObjects::Page.new.respond_to? :displayed?).to be true
-  end
-
 
 end

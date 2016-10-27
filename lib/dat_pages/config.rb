@@ -30,7 +30,6 @@ module DATPages
 
     def method_missing(name, *args, &block)
       value = args[0]
-
       if name.match(/^.*=/) != nil
         unless respond_to?(name) || respond_to?("#{name.to_s.gsub('=','')}".to_sym)
           define_singleton_method(name) {|val|instance_variable_set("@#{name.to_s.gsub('=','')}", val)}
@@ -40,11 +39,7 @@ module DATPages
       else
         super
       end
-
     end
-
-
-
   end
 
 end
