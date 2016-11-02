@@ -39,7 +39,15 @@ module DATPages
   # reset the global config
   # @return [DATPages::Config]
   def reset
+    reset_config
+    reset_driver
+  end
+
+  def reset_config
     @config = DATPages::Config.new
+  end
+
+  def reset_driver
     if @driver
       @driver.dispose
       @driver = nil
