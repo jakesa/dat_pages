@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/jakesa/dat_pages.svg?branch=master)](https://travis-ci.org/jakesa/dat_pages)
+
 # DatPages
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/dat_pages`. To experiment with that code, run `bin/console` for an interactive prompt.
