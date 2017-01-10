@@ -2,6 +2,7 @@ require 'selenium-webdriver'
 require 'capybara/dsl'
 require_relative 'errors'
 require_relative '../../lib/dat_pages/appium/driver'
+require_relative '../../lib/dat_pages/web_driver/driver'
 
 
 
@@ -15,11 +16,14 @@ module DATPages
       raise DATPages::Errors::NoDriverSpecified.new if driver_for.nil?
 
       # TODO: Could move this out to its own class or module specific to the configuring of different drivers
-      begin
-        self.send(driver_for.to_sym)
-      rescue NoMethodError
-        raise DATPages::Errors::DriverNotFound.new(driver_for.to_sym)
-      end
+      self.send(driver_for.to_sym)
+      # begin
+      #   self.send(driver_for.to_sym)
+      # rescue NoMethodError => e
+      #   puts e
+      #   puts e.backtrace
+      #   raise DATPages::Errors::DriverNotFound.new(driver_for.to_sym)
+      # end
 
 
       # output some run information here like which driver is being used
@@ -33,18 +37,26 @@ module DATPages
 
     def self.local_browser
       set_app_host
+      set_driver_path
 
+      # Capybara.run_server = false
       Capybara.default_driver = :selenium
       Capybara.register_driver :selenium do |app|
-        Capybara::Selenium::Driver.new(app, :browser => DATPages.config.web_browser.to_sym)
+        if DATPages.config.web_browser.to_sym == :firefox
+          Capybara::Selenium::Driver.new(app, :browser => :firefox, :marionette => true)
+        else
+          Capybara::Selenium::Driver.new(app, :browser => DATPages.config.web_browser.to_sym)
+        end
       end
+
       # set browser size
-      if DATPages.config.browser_resolution.nil? || DATPages.config.browser_resolution.empty?
+      if !DATPages.config.browser_resolution.nil? && !DATPages.config.browser_resolution.empty?
         set_browser_window_size DATPages.config.browser_resolution[:width], DATPages.config.browser_resolution[:height]
       else
         set_browser_window_size 1200, 800
       end
-      Capybara.current_session
+
+      DATPages::WebDriver::Driver.instance
     end
 
     def self.local_mobile_browser
@@ -73,7 +85,8 @@ module DATPages
     def self.set_app_host
       begin
         Capybara.app_host = DATPages.config.app_host
-      rescue
+      rescue => e
+        puts e
         raise DATPages::Errors::NoAppHost.new
       end
     end
@@ -117,6 +130,24 @@ module DATPages
       end
       raise DATPages::Errors::DeviceNotFound.new(device) unless load_devices.include? device.to_sym
       load_devices[device.to_sym]
+    end
+
+    def self.set_driver_path
+      if DATPages.config.driver_paths
+        DATPages.config.driver_paths.each do |driver, path|
+          case driver
+            when :chrome
+              Selenium::WebDriver::Chrome.driver_path = path
+            when :ie
+              Selenium::WebDriver::IE.driver_path = path
+            when :edge
+              Selenium::WebDriver::Edge.driver_path = path
+
+          end
+        end
+        return 'Ok'
+      end
+      nil
     end
 
     def self.load_devices

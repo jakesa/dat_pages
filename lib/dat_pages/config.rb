@@ -7,7 +7,7 @@ module DATPages
 
     attr_reader :desired_caps, :os
     attr_accessor :server_address, :server_port, :server_wait_time, :default_wait_time, :driver_for, :device, :web_browser,
-                  :orientation, :browser_resolution
+                  :orientation, :browser_resolution, :driver_paths
 
 
     def initialize(os='android')

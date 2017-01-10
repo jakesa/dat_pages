@@ -215,14 +215,16 @@ require_relative '../../errors'
     def find_element(visible = true)
       begin
         element = find_object(xpath, (@parent), visible)
-      rescue
+      rescue => e
+        puts e
+        puts e.backtrace
         raise DATPages::Errors::ElementNotFound.new(locator)
       end
       element
     end
 
     def find_object(locator, parent = nil, visible = true)
-      if !parent.nil?
+      if !parent.nil? && !parent.locator.nil?
         obj = page.first(:xpath, "#{parent.xpath} #{locator}", :wait => Capybara.default_max_wait_time, :visible => visible)
       else
         obj = page.first(:xpath, locator, :wait => Capybara.default_max_wait_time, :visible => visible)

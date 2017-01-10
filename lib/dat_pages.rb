@@ -59,58 +59,7 @@ module DATPages
   def server
     @server ||= DATPages::AppiumServer.new
   end
-  #
-  # # start the local appium server
-  # # @return [Boolean]
-  # def start_server
-  #   if remote_server?
-  #     puts '[INFO] Server not started. Setting indicated a remote server was specified.'
-  #     false
-  #   else
-  #     @server ||= DATPages::AppiumServer.new
-  #     @server.start
-  #   end
-  # end
-  #
-  # # stop the local appium server
-  # # @return [Boolean]
-  # def stop_server
-  #   if @server.nil?
-  #     puts '[INFO] No server has been started.'
-  #     false
-  #   else
-  #     @server.stop
-  #   end
-  # end
-  #
-  # # check to see if a remote server has been specified
-  # # @return [Boolean]
-  # def remote_server?
-  #   if DATPages.config.server_address != nil && DATPages.config.server_address != 'localhost'
-  #     true
-  #   else
-  #     false
-  #   end
-  # end
-  #
-  # # get the url for the remote server
-  # # @return [String] the url
-  # def remote_server
-  #   DATPages.config.url
-  # end
-  #
-  # # start the driver
-  # # @return [Boolean]
-  # def start_driver
-  #   # start the driver with the desired caps
-  #   DATPages::Driver.instance.start
-  # end
-  #
-  # # stop the driver
-  # # @return [Boolean]
-  # def stop_driver
-  #   DATPages::Driver.instance.stop
-  # end
+
 
   # get a reference to the current driver
   # @return [DATPages::Driver]
@@ -118,25 +67,5 @@ module DATPages
     # DATPages::Driver.instance
     @driver ||= DATPages::DriverConnection.initialize_driver
   end
-  #
-  # # close the application
-  # # @return [Boolean]
-  # def close_app
-  #   DATPages::Driver.instance.close_app
-  # end
-  #
-  # # open the application
-  # # @return [Boolean]
-  # def open_app
-  #   DATPages::Driver.instance.open_app
-  # end
-
-  # # send app to the background
-  # # it will come back to the foreground when the timer has run out
-  # # @param seconds [Int] the amount of time in seconds you want the app to be in the background
-  # def send_app_to_background(seconds)
-  #   DATPages::Driver.instance.send_app_to_background seconds
-  # end
-
 
 end
