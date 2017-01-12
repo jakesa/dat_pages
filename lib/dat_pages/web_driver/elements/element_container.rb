@@ -7,17 +7,18 @@ module DATPages
 
     def element(*args)
       args = parse_element_args(args)
-      class_eval(%Q(private def #{args[:name].to_s}; @#{args[:name].to_s} ||= DATPages::WebDriver::PageObjects::Element.new("#{args[:locator]}", self, "#{args[:find_by].nil? ? args[:find_by] : args[:find_by].to_sym}");end))
+      class_eval(%Q(private def #{args[:name].to_s}; @#{args[:name].to_s} ||= DATPages::WebDriver::PageObjects::Element.new("#{args[:locator]}", self, #{args[:find_by]});end;))
     end
 
     def section(*args)
       args = parse_section_args args
-      class_eval(%Q(private def #{args[:name].to_s};@#{args[:name].to_s} ||= #{args[:class_name]}.new("#{args[:find_by].nil? ? args[:find_by] : args[:find_by].to_sym}");end;))
+      class_eval(%Q(private def #{args[:name].to_s};@#{args[:name].to_s} ||= #{args[:class_name]}.new("#{args[:locator]}", self, "#{args[:find_by].nil? ? :css : args[:find_by]}");end;))
     end
 
-    # note: this will probably change to its own defined method later
-    alias_method :page, :section
-
+    def page(*args)
+      args = parse_page_args args
+      class_eval(%Q(private def #{args[:name].to_s};@#{args[:name].to_s} ||= #{args[:class_name]}.new(#{args[:url]});end;))
+    end
 
     private
 
@@ -35,11 +36,22 @@ module DATPages
     def parse_section_args(args)
       case args.length
         when 2
-          {name: args[0], class_name: args[1], locator: args[2]}
+          {name: args[0], class_name: args[1], locator: ''}
         when 3
+          {name: args[0], class_name: args[1], locator: args[2]}
+        when 4
           {name: args[0], class_name: args[1], find_by: args[2], locator: args[4]}
         else
-          raise ArgumentError.new("Wrong number of arguments. Expected 3 or 4, got #{args.length}")
+          raise ArgumentError.new("Wrong number of arguments. Expected 2..4, got #{args.length}")
+      end
+    end
+
+    def parse_page_args(args)
+      case args.length
+        when 2
+          {name: args[0], class_name: args[1], url: nil}
+        when 3
+          {name: args[0], class_name: args[1], url: args[2]}
       end
     end
 

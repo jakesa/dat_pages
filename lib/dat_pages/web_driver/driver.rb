@@ -13,6 +13,7 @@ class DATPages::WebDriver::Driver
 
   def initialize(session=Capybara.current_session)
     @session = session
+    Capybara.default_max_wait_time = DATPages.config.default_wait_time
   end
 
   def stop

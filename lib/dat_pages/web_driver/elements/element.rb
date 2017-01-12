@@ -9,13 +9,22 @@ require_relative '../../errors'
 
     def initialize(locator, parent=nil, find_by=:css)
       @parent  = parent
-      @locator = locator
-      @find_by = find_by
+      if locator.is_a? String
+        if locator.empty?
+          @locator = nil
+        else
+          @locator = locator
+        end
+      else
+        @locator = locator
+      end
+
+      @find_by = find_by.to_sym
 
     end
 
     def xpath
-      if @find_by == :css
+      if @find_by == :css && @locator != nil
         Nokogiri::CSS.xpath_for(@locator)[0]
       else
         @locator
@@ -174,7 +183,11 @@ require_relative '../../errors'
     def wait(seconds = nil, &block)
       timeout = seconds.nil? ? Capybara.default_max_wait_time : seconds
       wait = Selenium::WebDriver::Wait.new(timeout: timeout)
-      wait.until { yield block}
+      begin
+       wait.until {yield block}
+      rescue
+        false
+      end
     end
 
     def value
@@ -212,6 +225,7 @@ require_relative '../../errors'
 
     private
     # Note: all finds are done with xpath. If a css value is passed in, it is converted to xpath
+    # TODO: JS - I might want to move the lookup code out to its own module so that it can be used at the driver level
     def find_element(visible = true)
       begin
         element = find_object(xpath, (@parent), visible)
@@ -225,10 +239,11 @@ require_relative '../../errors'
 
     def find_object(locator, parent = nil, visible = true)
       if !parent.nil? && !parent.locator.nil?
-        obj = page.first(:xpath, "#{parent.xpath} #{locator}", :wait => Capybara.default_max_wait_time, :visible => visible)
+        obj = page.first(:xpath, "#{parent.xpath}", :visible => visible).first(:xpath, "#{locator}", :visible => visible)
       else
-        obj = page.first(:xpath, locator, :wait => Capybara.default_max_wait_time, :visible => visible)
+        obj = page.first(:xpath, locator, :visible => visible)
       end
       obj
     end
+
   end #Element
