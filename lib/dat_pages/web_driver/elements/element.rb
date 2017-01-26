@@ -19,7 +19,7 @@ require_relative '../../errors'
         @locator = locator
       end
 
-      @find_by = find_by.to_sym
+      @find_by = find_by.nil? ? :css : find_by.to_sym
 
     end
 
@@ -224,6 +224,7 @@ require_relative '../../errors'
     end
 
     private
+
     # Note: all finds are done with xpath. If a css value is passed in, it is converted to xpath
     # TODO: JS - I might want to move the lookup code out to its own module so that it can be used at the driver level
     def find_element(visible = true)

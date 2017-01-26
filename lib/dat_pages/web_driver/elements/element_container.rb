@@ -1,4 +1,5 @@
 require_relative '../../errors'
+require_relative '../sections'
 
 module DATPages
 
@@ -7,12 +8,58 @@ module DATPages
 
     def element(*args)
       args = parse_element_args(args)
-      class_eval(%Q(private def #{args[:name].to_s}; @#{args[:name].to_s} ||= DATPages::WebDriver::PageObjects::Element.new("#{args[:locator]}", self, #{args[:find_by]});end;))
+
+      class_eval do
+        private
+        define_method(args[:name]) do |locator=args[:locator], find_by=args[:find_by]|
+          instance_variable_set("@#{args[:name].to_s}", (
+              DATPages::WebDriver::PageObjects::Element.new(locator, self, find_by)
+          ))
+        end
+      end
+
+      # class_eval(%Q(private def #{args[:name].to_s}; @#{args[:name].to_s} ||= DATPages::WebDriver::PageObjects::Element.new("#{args[:locator]}", self, #{args[:find_by]});end;))
+    end
+
+    def elements(*args)
+      require_relative 'elements'
+      args = parse_element_args(args)
+      class_eval do
+        private
+        define_method(args[:name]) do |locator=args[:locator], find_by=args[:find_by]|
+          instance_variable_set("@#{args[:name].to_s}", (
+            DATPages::WebDriver::PageObjects::Elements.new(locator, self, find_by)
+          ))
+        end
+      end
+
+      # class_eval(%Q(private def #{args[:name].to_s}; @#{args[:name].to_s} = DATPages::WebDriver::PageObjects::Elements.new("#{args[:locator]}", self, #{args[:find_by]});end;))
     end
 
     def section(*args)
       args = parse_section_args args
-      class_eval(%Q(private def #{args[:name].to_s};@#{args[:name].to_s} ||= #{args[:class_name]}.new("#{args[:locator]}", self, "#{args[:find_by].nil? ? :css : args[:find_by]}");end;))
+      class_eval do
+        private
+        define_method(args[:name]) do |locator=args[:locator], find_by=args[:find_by]|
+          instance_variable_set("@#{args[:name].to_s}", (
+          args[:class_name].new(locator, self, find_by)
+          ))
+        end
+      end
+
+      # class_eval(%Q(private def #{args[:name].to_s};@#{args[:name].to_s} ||= #{args[:class_name]}.new("#{args[:locator]}", self, "#{args[:find_by].nil? ? :css : args[:find_by]}");end;))
+    end
+
+    def sections(*args)
+      args = parse_section_args args
+      class_eval do
+        private
+        define_method(args[:name]) do |locator=args[:locator], find_by=args[:find_by]|
+          instance_variable_set("@#{args[:name].to_s}", (
+          DATPages::WebDriver::PageObjects::Sections.generate_sections args[:class_name], locator, self, find_by
+          ))
+        end
+      end
     end
 
     def page(*args)
