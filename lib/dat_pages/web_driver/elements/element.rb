@@ -1,14 +1,16 @@
-require 'capybara'
-require 'capybara/dsl'
+# require 'capybara'
+# require 'capybara/dsl'
 require_relative '../../errors'
+require_relative '../finders'
 
   class DATPages::WebDriver::PageObjects::Element
-    include Capybara::DSL
+    # include Capybara::DSL
+    include DATPages::WebDriver::PageObjects::Finders
 
-    attr_reader :parent, :locator, :find_by
+    attr_reader :parent_element, :locator, :find_by
 
-    def initialize(locator, parent=nil, find_by=:css)
-      @parent  = parent
+    def initialize(locator, parent_element=nil, find_by=:css)
+      @parent_element  = parent_element
       if locator.is_a? String
         if locator.empty?
           @locator = nil
@@ -31,6 +33,10 @@ require_relative '../../errors'
       end
     end
 
+    def path
+      @path ||= find_element(self).path
+    end
+
 
     # Click on an object
     #
@@ -38,7 +44,7 @@ require_relative '../../errors'
     #   basket_link.click
     #
     def click
-      obj = find_element
+      obj = find_element(self)
       obj.click
     end
 
@@ -48,7 +54,7 @@ require_relative '../../errors'
     #   file_image.double_click
     # @note this works but I'm not sure it does
     def double_click
-      obj = find_element
+      obj = find_element(self)
       page.driver.browser.mouse.double_click(obj.native)
     end
 
@@ -60,12 +66,12 @@ require_relative '../../errors'
     #   basket_item_image.click_at(10, 10)
     #
     def click_at(x, y)
-      obj = find_element
+      obj = find_element(self)
       obj.click_at(x, y)
     end
 
     def set(value)
-      obj = find_element
+      obj = find_element(self)
       obj.set(value)
     end
 
@@ -76,7 +82,7 @@ require_relative '../../errors'
     #   comment_field.send_keys(:enter)
     #
     def send_keys(*keys)
-      obj = find_element
+      obj = find_element(self)
       obj.send_keys(*keys)
     end
 
@@ -86,9 +92,9 @@ require_relative '../../errors'
     # @example
     #   basket_link.exists?
     #
-    def exists?(visible = true)
+    def exists?
       begin
-        obj = find_element visible
+        obj = find_element(self)
       rescue DATPages::Errors::ElementNotFound
         false
       end
@@ -101,8 +107,8 @@ require_relative '../../errors'
     # @example
     #   remember_me_checkbox.visible?
     #
-    def visible?(visible = false)
-      obj = find_element visible
+    def visible?
+      obj = find_element(self)
       ##--
       # this uses capybaras visible? method (which in turn is using selenium-webdrivers visible? method)
       # a visible? method that uses a different attribute or selector for determining whether or not the element is visible
@@ -120,7 +126,7 @@ require_relative '../../errors'
     #   remember_me_checkbox.hidden?
     #
     def hidden?
-      not visible?(false)
+      not visible?
     end
 
     # Is UI object enabled?
@@ -140,7 +146,7 @@ require_relative '../../errors'
     #   login_button.disabled?
     #
     def disabled?
-      obj = find_element
+      obj = find_element(self)
       obj.disabled?
     end
 
@@ -191,60 +197,40 @@ require_relative '../../errors'
     end
 
     def value
-      find_element.value
+      find_element(self).value
     end
 
     def text
-      find_element.text
+      find_element(self).text
     end
 
     # Hover the cursor over an object
     #
     # @example
     #   basket_link.hover
-    #
+    # @note does not appear to be implemented in the new firefox driver
     def hover
-      obj = find_element
+      obj = find_element(self)
       obj.hover
     end
 
     def drag_by(right_offset, down_offset)
-      obj = find_element
+      obj = find_element(self)
       obj.drag_by(right_offset, down_offset)
     end
 
     def [](attrib)
-      obj = find_element
+      obj = find_element(self)
       obj[attrib]
     end
 
     def get_native_attribute(attrib)
-      obj = find_element
+      obj = find_element(self)
       obj.native.attribute(attrib)
     end
 
-    private
-
-    # Note: all finds are done with xpath. If a css value is passed in, it is converted to xpath
-    # TODO: JS - I might want to move the lookup code out to its own module so that it can be used at the driver level
-    def find_element(visible = true)
-      begin
-        element = find_object(xpath, (@parent), visible)
-      rescue => e
-        puts e
-        puts e.backtrace
-        raise DATPages::Errors::ElementNotFound.new(locator)
-      end
-      element
-    end
-
-    def find_object(locator, parent = nil, visible = true)
-      if !parent.nil? && !parent.locator.nil?
-        obj = page.first(:xpath, "#{parent.xpath}", :visible => visible).first(:xpath, "#{locator}", :visible => visible)
-      else
-        obj = page.first(:xpath, locator, :visible => visible)
-      end
-      obj
+    def native
+      @element
     end
 
   end #Element

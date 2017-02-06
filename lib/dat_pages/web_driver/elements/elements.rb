@@ -1,50 +1,29 @@
 require_relative 'element'
-require 'capybara'
-require 'capybara/dsl'
-require_relative '../../errors'
+require_relative '../finders'
 
 class DATPages::WebDriver::PageObjects::Elements
 
-  include Capybara::DSL
+  extend DATPages::WebDriver::PageObjects::Finders
 
-  attr_reader :parent, :locator, :find_by, :elements
-
-  def initialize(locator, parent=nil, find_by=:css)
-    @parent  = parent
-    if locator.is_a? String
-      if locator.empty?
-        @locator = nil
-      else
-        @locator = locator
-      end
-    else
-      @locator = locator
+  def self.generate_elements(locator, parent_element, find_by)
+    elements = []
+    parent = find_element parent_element
+    find_elements(parent, locator, find_by).each do |element|
+      elements << DATPages::WebDriver::PageObjects::Element.new(element.path, parent_element, :xpath)
     end
-    @elements = []
-    @find_by = find_by.nil? ? :css : find_by.to_sym
-    get_elements self.xpath, parent
-
+    elements
   end
 
-  def xpath
-    if @find_by == :css && @locator != nil
-      Nokogiri::CSS.xpath_for(@locator)[0]
-    else
-      @locator
-    end
+  def self.xpath(css)
+    Nokogiri::CSS.xpath_for(css)[0]
   end
 
   private
 
-  def get_elements(locator, parent)
-    find_objects(locator, parent).each do |obj|
-      @elements << DATPages::WebDriver::PageObjects::Element.new(obj.path, parent, :xpath)
-    end
-  end
-
-  def find_objects(locator, parent = nil, visible = true)
+  # JS - this is not used but I am keeping it here for reference. I have a feeling I am going to modify the Finder at a later date
+  def self.find_objects(locator, parent = nil, visible = true)
     if !parent.nil? && !parent.locator.nil?
-      obj = page.first(:xpath, "#{parent.xpath}", :visible => visible).all(:xpath, "#{locator}", :visible => visible)
+      obj = page.first(:xpath, "#{parent.xpath}", :visible => visible).all(:xpath, ".#{locator}", :visible => visible)
     else
       obj = page.all(:xpath, locator, :visible => visible)
     end

@@ -6,6 +6,7 @@ require_relative 'dat_pages/web_driver/web_driver'
 require_relative '../lib/dat_pages/web_driver/page_objects'
 require_relative 'dat_pages/appium/appium'
 require_relative '../lib/dat_pages/appium/page_objects'
+require_relative '../lib/dat_pages/web_driver/elements/element_container'
 
 module DATPages
 
