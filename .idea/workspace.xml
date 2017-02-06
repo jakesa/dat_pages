@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0946674f-11f7-487a-91d9-b83dec5fc6bf" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/dat_pages/web_driver/finders.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/dat_pages.rb" afterPath="$PROJECT_DIR$/lib/dat_pages.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/dat_pages/web_driver/elements/element.rb" afterPath="$PROJECT_DIR$/lib/dat_pages/web_driver/elements/element.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/dat_pages/web_driver/elements/element_container.rb" afterPath="$PROJECT_DIR$/lib/dat_pages/web_driver/elements/element_container.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/dat_pages/web_driver/elements/elements.rb" afterPath="$PROJECT_DIR$/lib/dat_pages/web_driver/elements/elements.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/dat_pages/web_driver/sections.rb" afterPath="$PROJECT_DIR$/lib/dat_pages/web_driver/sections.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/dat_pages/version.rb" afterPath="$PROJECT_DIR$/lib/dat_pages/version.rb" />
     </list>
     <ignored path="dat_pages.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -69,7 +64,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sections.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="sections.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/dat_pages/web_driver/sections.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
@@ -79,11 +74,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="page.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/dat_pages/web_driver/page.rb">
+      <file leaf-file-name="version.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/lib/dat_pages/version.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="8" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="8" />
+            <state relative-caret-position="45">
+              <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -137,7 +132,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/spec/element_spec.rb" />
         <option value="$PROJECT_DIR$/spec/web_driver_element_spec.rb" />
         <option value="$PROJECT_DIR$/spec/appium_element_spec.rb" />
         <option value="$PROJECT_DIR$/lib/dat_pages/errors.rb" />
@@ -188,6 +182,7 @@
         <option value="$PROJECT_DIR$/lib/dat_pages/web_driver/elements/element.rb" />
         <option value="$PROJECT_DIR$/lib/dat_pages/web_driver/elements/elements.rb" />
         <option value="$PROJECT_DIR$/lib/dat_pages/web_driver/finders.rb" />
+        <option value="$PROJECT_DIR$/lib/dat_pages/version.rb" />
       </list>
     </option>
   </component>
@@ -258,38 +253,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="spec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dat_pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dat_pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="spec" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web_driver" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dat_pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dat_pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="lib" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -309,54 +272,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="dat_pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dat_pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dat_pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dat_pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web_driver" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dat_pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dat_pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dat_pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web_driver" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="elements" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -539,12 +454,12 @@
       <workItem from="1479624090599" duration="543000" />
       <workItem from="1483665130565" duration="57125000" />
       <workItem from="1485195280731" duration="21074000" />
-      <workItem from="1485824096921" duration="40820000" />
+      <workItem from="1485824096921" duration="40881000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="163577000" />
+    <option name="totallyTimeSpent" value="163638000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1276" y="38" width="1232" height="749" extended-state="0" />
@@ -620,13 +535,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/dat_pages/version.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -980,6 +888,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="14" column="45" selection-start-line="14" selection-start-column="45" selection-end-line="14" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/dat_pages/version.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding />
         </state>
       </provider>
