@@ -27,9 +27,7 @@ module DATPages::WebDriver::PageObjects::Finders
         end
 
       end
-    rescue => e
-      puts e
-      puts e.backtrace
+    rescue
       raise DATPages::Errors::ElementNotFound.new(obj.locator)
     end
     @element
