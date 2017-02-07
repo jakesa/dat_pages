@@ -14,7 +14,7 @@ class DATPages::WebDriver::PageObjects::Section < DATPages::WebDriver::PageObjec
 
 
   def initialize(locator=nil, parent = nil, find_by=:css)
-    locator = self.class.locator ? self.class.locator : locator
+    locator = locator ? locator : self.class.locator
     super(locator, parent, find_by)
   end
 end
