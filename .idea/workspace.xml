@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0946674f-11f7-487a-91d9-b83dec5fc6bf" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/dat_pages/web_driver/section.rb" afterPath="$PROJECT_DIR$/lib/dat_pages/web_driver/section.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/dat_pages/web_driver/elements/element_container.rb" afterPath="$PROJECT_DIR$/lib/dat_pages/web_driver/elements/element_container.rb" />
     </list>
     <ignored path="dat_pages.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,8 +26,8 @@
       <file leaf-file-name="element_container.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/dat_pages/web_driver/elements/element_container.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="38" column="7" selection-start-line="38" selection-start-column="7" selection-end-line="38" selection-end-column="7" />
+            <state relative-caret-position="420">
+              <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -43,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="section.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="section.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/dat_pages/web_driver/section.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="52" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
+            <state relative-caret-position="300">
+              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -103,11 +103,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="finders.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="finders.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/dat_pages/web_driver/finders.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+            <state relative-caret-position="315">
+              <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -176,12 +176,12 @@
         <option value="$PROJECT_DIR$/lib/dat_pages.rb" />
         <option value="$PROJECT_DIR$/lib/dat_pages/web_driver/sections.rb" />
         <option value="$PROJECT_DIR$/lib/dat_pages/web_driver/page.rb" />
-        <option value="$PROJECT_DIR$/lib/dat_pages/web_driver/elements/element_container.rb" />
         <option value="$PROJECT_DIR$/lib/dat_pages/web_driver/elements/element.rb" />
         <option value="$PROJECT_DIR$/lib/dat_pages/web_driver/elements/elements.rb" />
         <option value="$PROJECT_DIR$/lib/dat_pages/version.rb" />
-        <option value="$PROJECT_DIR$/lib/dat_pages/web_driver/finders.rb" />
         <option value="$PROJECT_DIR$/lib/dat_pages/web_driver/section.rb" />
+        <option value="$PROJECT_DIR$/lib/dat_pages/web_driver/elements/element_container.rb" />
+        <option value="$PROJECT_DIR$/lib/dat_pages/web_driver/finders.rb" />
       </list>
     </option>
   </component>
@@ -192,10 +192,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-715" />
-    <option name="y" value="-1036" />
-    <option name="width" value="1440" />
-    <option name="height" value="873" />
+    <option name="x" value="94" />
+    <option name="y" value="166" />
+    <option name="width" value="1232" />
+    <option name="height" value="749" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -296,6 +296,32 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dat_pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dat_pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dat_pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="web_driver" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elements" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -303,7 +329,7 @@
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.ruby.settings.RubyActiveModuleSdkConfigurable" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
-    <property name="last_opened_file_path" value="$USER_HOME$/siebel_oui_automation_rewrite" />
+    <property name="last_opened_file_path" value="$USER_HOME$/siebel_oui_automation" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
   </component>
@@ -475,18 +501,18 @@
       <workItem from="1479624090599" duration="543000" />
       <workItem from="1483665130565" duration="57125000" />
       <workItem from="1485195280731" duration="21074000" />
-      <workItem from="1485824096921" duration="42306000" />
+      <workItem from="1485824096921" duration="43591000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="165063000" />
+    <option name="totallyTimeSpent" value="166348000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-715" y="-1036" width="1440" height="873" extended-state="0" />
+    <frame x="94" y="166" width="1232" height="749" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1981402" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23277311" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -881,14 +907,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/dat_pages/web_driver/elements/element_container.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="38" column="7" selection-start-line="38" selection-start-column="7" selection-end-line="38" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/dat_pages/web_driver/sections.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -905,18 +923,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/dat_pages/web_driver/finders.rb">
+    <entry file="file://$PROJECT_DIR$/lib/dat_pages/web_driver/section.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="42" column="0" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
+        <state relative-caret-position="300">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/dat_pages/web_driver/section.rb">
+    <entry file="file://$PROJECT_DIR$/lib/dat_pages/web_driver/elements/element_container.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="52" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
+        <state relative-caret-position="420">
+          <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/dat_pages/web_driver/finders.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
           <folding />
         </state>
       </provider>

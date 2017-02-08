@@ -76,7 +76,7 @@ module DATPages
     def parse_section_args(args)
       case args.length
         when 2
-          {name: args[0], class_name: args[1], locator: ''}
+          {name: args[0], class_name: args[1], locator: nil}
         when 3
           {name: args[0], class_name: args[1], locator: args[2]}
         when 4
