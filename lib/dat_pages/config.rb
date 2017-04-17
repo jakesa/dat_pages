@@ -37,7 +37,7 @@ module DATPages
           self.send(name, value)
         end
       else
-        super
+        nil
       end
     end
   end

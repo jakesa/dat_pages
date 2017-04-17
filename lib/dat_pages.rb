@@ -58,7 +58,7 @@ module DATPages
   # get the current instance of the server
   # @return [DATPages::AppiumServer]
   def server
-    @server ||= DATPages::AppiumServer.new
+    @server ||= DATPages::Appium::AppiumServer.new
   end
 
 
