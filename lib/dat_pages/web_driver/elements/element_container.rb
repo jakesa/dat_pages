@@ -1,11 +1,22 @@
 require_relative '../../errors'
 require_relative 'elements'
 require_relative '../sections'
+require_relative 'select'
 
 module DATPages
 
   module WebDriver::PageObjects::ElementContainer
     # TODO: Throw an error if the driver hasnt been started
+
+    def select(*args)
+      args = parse_element_args(args)
+      private
+      define_method(args[:name]) do |locator=args[:locator], find_by=args[:find_by]|
+        instance_variable_set("@#{args[:name].to_s}", (
+        DATPages::WebDriver::PageObjects::Select.new(locator, self, find_by)
+        ))
+      end
+    end
 
     def element(*args)
       args = parse_element_args(args)

@@ -204,6 +204,10 @@ require_relative '../finders'
       find_element(self).text
     end
 
+    def clear
+      find_element(self).native.clear
+    end
+
     # Hover the cursor over an object
     #
     # @example
@@ -230,7 +234,7 @@ require_relative '../finders'
     end
 
     def native
-      @element
+      @element ||= find_element self
     end
 
   end #Element
