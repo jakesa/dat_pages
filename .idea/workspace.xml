@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0946674f-11f7-487a-91d9-b83dec5fc6bf" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="0946674f-11f7-487a-91d9-b83dec5fc6bf" name="Default" comment="" />
     <ignored path="dat_pages.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -104,8 +102,8 @@
       <file leaf-file-name="element_container.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/dat_pages/web_driver/elements/element_container.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="25" lean-forward="true" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
+            <state relative-caret-position="210">
+              <caret line="14" column="55" lean-forward="true" selection-start-line="14" selection-start-column="55" selection-end-line="14" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -560,12 +558,12 @@
       <workItem from="1491964625922" duration="835000" />
       <workItem from="1492204636527" duration="6397000" />
       <workItem from="1493942809874" duration="765000" />
-      <workItem from="1495736322516" duration="6781000" />
+      <workItem from="1495736322516" duration="7574000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="201686000" />
+    <option name="totallyTimeSpent" value="202479000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="918" y="190" width="1440" height="873" extended-state="0" />
@@ -984,8 +982,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/dat_pages/web_driver/elements/element_container.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="25" lean-forward="true" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
+        <state relative-caret-position="210">
+          <caret line="14" column="55" lean-forward="true" selection-start-line="14" selection-start-column="55" selection-end-line="14" selection-end-column="55" />
           <folding />
         </state>
       </provider>
