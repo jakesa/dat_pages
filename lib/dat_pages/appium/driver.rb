@@ -21,10 +21,10 @@ module DATPages
 
     def initialize
       @started = (begin
-        Object::Appium::Driver.new(DATPages.config.desired_caps.to_hash)
-        if DATPages.config.server_address != 'localhost'
-          $driver.custom_url = DATPages.config.url
-        end
+        Object::Appium::Driver.new(DATPages.config.desired_caps.to_hash,true)
+        # if DATPages.config.server_address != 'localhost'
+        #   $driver.custom_url = DATPages.config.url
+        # end
         $driver.start_driver
         @app_open = true
         # give all the page objects the appium methods
