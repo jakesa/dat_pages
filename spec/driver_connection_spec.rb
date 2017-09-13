@@ -30,7 +30,7 @@ describe DATPages::DriverConnection do
 
   it 'should raise an error if the driver specified is not supported' do
     DATPages.configure do |config|
-      config.driver_for = :appium2
+      config.driver_for = :appium
     end
     expect(begin
              DATPages::DriverConnection.initialize_driver

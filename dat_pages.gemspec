@@ -35,7 +35,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rspec'
   spec.add_dependency 'capybara'
   spec.add_dependency 'appium_capybara'
-  # spec.add_dependency 'selenium_webdriver'
+  spec.add_development_dependency 'selenium-webdriver'
   spec.add_development_dependency 'sinatra'
 
 end
