@@ -3,15 +3,18 @@ require_relative '../errors'
 module DATPages::WebDriver::PageObjects::Finders
   include Capybara::DSL
 
-
+  #TODO: revisit this for web apps that are not Siebel
   # find an element using all of its parent elements
   def find_element(obj, prev_obj=nil)
+    puts "finding: #{obj.locator} parent: #{prev_obj.locator unless prev_obj.nil?}"
     begin
       if obj.find_by == :xpath && obj.locator.include?('html')
         @element = page.find(:xpath, obj.locator, :visible => true)
       elsif obj.parent_element != nil && obj.parent_element.locator != nil
         @element = find_element(obj.parent_element, obj)
       else
+        #TODO: this does not account for selectors after the id. I.E. #this that.overthere
+        # need to do a split and do multiple finds based on the results of the split
         if obj.find_by == :css && obj.locator.include?('#')
           @element = page.find(:id, obj.locator.gsub('#', ''), :visible => true)
         else

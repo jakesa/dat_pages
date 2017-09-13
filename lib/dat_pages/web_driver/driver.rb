@@ -20,13 +20,25 @@ class DATPages::WebDriver::Driver
     @session.driver.quit
   end
 
-  def load_app
+  def load_app(clean=true)
     @session.visit('/')
+    clear_local_storage if clean
+    clear_session_storage if clean
   end
 
   def load_page(page_object)
     raise "Parameter was not a DATPages::Page" unless page_object.is_a? DATPages::WebDriver::PageObjects::Page
     page_object.load
+  end
+
+  def clear_local_storage
+    #has to be done after a page has been loaded
+    @session.driver.browser.local_storage.clear
+  end
+
+  def clear_session_storage
+    #has to be done after a page has been loaded
+    @session.driver.browser.session_storage.clear
   end
 
 
