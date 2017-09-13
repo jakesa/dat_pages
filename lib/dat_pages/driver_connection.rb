@@ -59,6 +59,28 @@ module DATPages
       DATPages::WebDriver::Driver.instance
     end
 
+    def self.remote_browser
+      set_app_host
+      # driver = Selenium::WebDriver.for :remote, url: DATPages.config.remote_url, desired_capabilities: DATPages.config.web_browser.to_sym
+
+      Capybara.register_driver :selenium_grid do |app|
+        caps = {:browser => :remote, :url => DATPages.config.remote_url, :desired_capabilities => {:browserName => DATPages.config.web_browser}}
+        Capybara::Selenium::Driver.new(app, caps)
+
+      end
+
+      Capybara.current_driver = :selenium_grid
+
+      # # set browser size
+      # if !DATPages.config.browser_resolution.nil? && !DATPages.config.browser_resolution.empty?
+      #   set_browser_window_size DATPages.config.browser_resolution[:width], DATPages.config.browser_resolution[:height]
+      # else
+      #   set_browser_window_size 1200, 800
+      # end
+      # binding.pry
+      DATPages::WebDriver::Driver.instance
+    end
+
     def self.local_mobile_browser
       set_app_host
       device = get_device
