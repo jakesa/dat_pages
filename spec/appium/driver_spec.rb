@@ -14,8 +14,7 @@ describe DATPages::Driver do
       config.desired_caps.platformName = 'android'
       config.desired_caps.deviceName = 'emulator-5554'
       config.desired_caps.avd = 'API22'
-      config.desired_caps.app = 'spec/appium/apk/trucker-debug.apk'
-      config.desired_caps.appActivity = 'com.dat.trucker.views.activities.LoginActivity'
+      config.desired_caps.app = 'spec/appium/apk/ContactManager.apk'
       config.appium_port = '4723'
       config.emulator_port = 5544
       config.bootstrap_port = 6000
