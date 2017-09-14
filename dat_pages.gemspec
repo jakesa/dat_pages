@@ -33,9 +33,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'pry'
   spec.add_development_dependency 'thor'
   spec.add_development_dependency 'rspec'
-  spec.add_dependency 'capybara'
+  spec.add_dependency 'capybara', '~> 2.15.1'
   spec.add_dependency 'appium_capybara'
   spec.add_development_dependency 'selenium-webdriver'
   spec.add_development_dependency 'sinatra'
-
 end
