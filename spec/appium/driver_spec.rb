@@ -8,17 +8,29 @@ describe DATPages::Driver do
 
   before :all do
     DATPages.configure do |config|
-          config.os = 'android'
-          config.desired_caps.fullReset = true
-          config.desired_caps.platformName = 'android'
-          config.desired_caps.deviceName = 'android_6'
-          config.desired_caps.app = '/Users/jakesa/Downloads/fm-beta.apk'
-        end
+      config.os = 'android'
+      config.driver_for = :appium
+      config.desired_caps.fullReset = true
+      config.desired_caps.platformName = 'android'
+      config.desired_caps.deviceName = 'emulator-5554'
+      config.desired_caps.avd = 'API22'
+      config.desired_caps.app = 'spec/appium/apk/ContactManager.apk'
+      config.appium_port = '4723'
+      config.emulator_port = 5544
+      config.bootstrap_port = 6000
+    end
+    @server = DATPages::Appium::AppiumServer.new
+    @server.start
     @driver = DATPages::Driver.instance
+  end
+
+  before :each do
+    DATPages::Driver.reset
   end
 
   after :all do
     @driver.stop
+    @server.stop
   end
 
   it 'should respond to #start' do

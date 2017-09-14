@@ -1,11 +1,13 @@
 require 'sinatra'
 require 'capybara/dsl'
+require 'selenium-webdriver'
 
 Capybara.app_host = 'http://localhost:4567'
-Capybara.register_driver :selenium do |app|
-  Capybara::Selenium::Driver.new app, :browser => :firefox
-end
-Capybara.default_driver = :selenium
+# Capybara.register_driver :selenium do |app|
+#   Capybara::Selenium::Driver.new app, :browser => :chrome
+# end
+Capybara.current_driver = :selenium_chrome
+Selenium::WebDriver::Chrome.driver_path = 'spec/web_driver/driver/chromedriver'
 
 def go_to(url)
   driver = Capybara.current_session

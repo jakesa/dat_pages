@@ -90,16 +90,10 @@ describe DATPages::Config do
     expect(config.cucumber_options).to eq ['these', 'are', 'the', 'options']
   end
 
-  it 'should raise a no method error if the method name doesnt have an = at the end' do
+  it 'should return nil if the method is not already defined on the object' do
     config = DATPages::Config.new
-    error = (
-    begin
-      config.this_should_not_work
-    rescue =>e
-     e
-    end
-    )
-    expect(error.class).to eq NoMethodError
+    result = config.not_method_defined_yet
+    expect(result).to eq nil
   end
 
 end

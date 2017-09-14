@@ -40,7 +40,7 @@ describe DATPages::WebDriver::PageObjects::Element do
   end
 
   it 'should set the value' do
-    ele = DATPages::WebDriver::PageObjects::Element.new('input')
+    ele = DATPages::WebDriver::PageObjects::Element.new('#address')
     ele.set 'test'
     expect(ele.value).to eq 'test'
   end
@@ -63,7 +63,7 @@ describe DATPages::WebDriver::PageObjects::Element do
 
   specify 'the DATPages::WebDriver::PageObjects::Element should not be visible' do
     ele = DATPages::WebDriver::PageObjects::Element.new('#cell4')
-    expect(ele.hidden?).to be_truthy
+    expect(ele.exists?).to eq false
   end
 
   it 'should be disabled' do

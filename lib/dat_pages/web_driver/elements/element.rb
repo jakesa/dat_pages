@@ -54,8 +54,16 @@ require_relative '../finders'
     #   file_image.double_click
     # @note this works but I'm not sure it does
     def double_click
-      obj = find_element(self)
-      page.driver.browser.mouse.double_click(obj.native)
+      begin
+        obj = find_element(self)
+        #TODO this has been deprecated need to change the implementation
+        # WARN Selenium [DEPRECATION] Driver#mouse is deprecated. Use driver.action.<command>.perform instead.
+        page.driver.browser.mouse.double_click(obj.native)
+        true
+      rescue => e
+        puts e
+        false
+      end
     end
 
     # Click at a specific location within an object

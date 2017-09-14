@@ -16,8 +16,7 @@ module DATPages
       end
 
       def stop
-        if @server
-          _process.nil? || @server_process.closed?
+        if @server_process.nil? || @server_process.closed?
           puts 'Server already stopped'
           false
         else
