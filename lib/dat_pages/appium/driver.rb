@@ -20,11 +20,13 @@ module DATPages
     # launch the appium driver
 
     def initialize
+      ruby_lib_opts = { appium_lib: { server_url: DATPages.config.url } }
+      opts = ruby_lib_opts.merge(DATPages.config.desired_caps.to_hash)
       @started = (begin
-        Object::Appium::Driver.new(DATPages.config.desired_caps.to_hash,true)
-        if DATPages.config.server_address != 'localhost'
-          $driver.custom_url = DATPages.config.url
-        end
+        Object::Appium::Driver.new(opts,true)
+        # if DATPages.config.server_address != 'localhost'
+        #   $driver.custom_url = DATPages.config.url
+        # end
         $driver.start_driver
         @app_open = true
         # give all the page objects the appium methods
