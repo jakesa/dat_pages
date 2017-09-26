@@ -6,7 +6,7 @@ module DATPages::WebDriver::PageObjects::Finders
   #TODO: revisit this for web apps that are not Siebel
   # find an element using all of its parent elements
   def find_element(obj, prev_obj=nil)
-    puts "finding: #{obj.locator} parent: #{prev_obj.locator unless prev_obj.nil?}"
+    # puts "finding: #{obj.locator} parent: #{prev_obj.locator unless prev_obj.nil?}"
     begin
       if obj.find_by == :xpath && obj.locator.include?('html')
         @element = page.find(:xpath, obj.locator, :visible => true)
