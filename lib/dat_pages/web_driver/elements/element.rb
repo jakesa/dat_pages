@@ -5,11 +5,26 @@ require_relative '../finders'
 
   class DATPages::WebDriver::PageObjects::Element
     # include Capybara::DSL
-    include DATPages::WebDriver::PageObjects::Finders
+    # include DATPages::WebDriver::PageObjects::Finders
 
     attr_reader :parent_element, :locator, :find_by
 
     def initialize(locator, parent_element=nil, find_by=:css)
+      @finder = (
+        try = 0
+        begin
+          try += 1
+          DATPages::WebDriver::PageObjects::Finders.const_get DATPages.config.finder.to_s.capitalize
+        rescue => e
+          require '' + File.join(File.absolute_path('../finders', File.dirname(__FILE__)),"/#{DATPages.config.finder}")
+          if try < 2
+            retry
+          else
+            raise e
+          end
+        end
+      )
+      self.class.include @finder
       @parent_element  = parent_element
       if locator.is_a? String
         if locator.empty?
@@ -34,7 +49,7 @@ require_relative '../finders'
     end
 
     def path
-      @path ||= find_element(self).path
+      @path ||= find_element(self, @parent_element).path
     end
 
 
@@ -44,7 +59,7 @@ require_relative '../finders'
     #   basket_link.click
     #
     def click
-      obj = find_element(self)
+      obj = find_element(self, @parent_element)
       obj.click
     end
 
@@ -55,7 +70,7 @@ require_relative '../finders'
     # @note this works but I'm not sure it does
     def double_click
       begin
-        obj = find_element(self)
+        obj = find_element(self, @parent_element)
         #TODO this has been deprecated need to change the implementation
         # WARN Selenium [DEPRECATION] Driver#mouse is deprecated. Use driver.action.<command>.perform instead.
         page.driver.browser.mouse.double_click(obj.native)
@@ -74,12 +89,12 @@ require_relative '../finders'
     #   basket_item_image.click_at(10, 10)
     #
     def click_at(x, y)
-      obj = find_element(self)
+      obj = find_element(self, @parent_element)
       obj.click_at(x, y)
     end
 
     def set(value)
-      obj = find_element(self)
+      obj = find_element(self, @parent_element)
       obj.set(value)
     end
 
@@ -90,7 +105,7 @@ require_relative '../finders'
     #   comment_field.send_keys(:enter)
     #
     def send_keys(*keys)
-      obj = find_element(self)
+      obj = find_element(self, @parent_element)
       obj.send_keys(*keys)
     end
 
@@ -100,9 +115,9 @@ require_relative '../finders'
     # @example
     #   basket_link.exists?
     #
-    def exists?
+    def exists?(wait=false)
       begin
-        obj = find_element(self)
+        obj = find_element(self, @parent_element, wait)
       rescue DATPages::Errors::ElementNotFound
         false
       end
@@ -116,7 +131,7 @@ require_relative '../finders'
     #   remember_me_checkbox.visible?
     #
     def visible?
-      obj = find_element(self)
+      obj = find_element(self, @parent_element)
       ##--
       # this uses capybaras visible? method (which in turn is using selenium-webdrivers visible? method)
       # a visible? method that uses a different attribute or selector for determining whether or not the element is visible
@@ -154,7 +169,7 @@ require_relative '../finders'
     #   login_button.disabled?
     #
     def disabled?
-      obj = find_element(self)
+      obj = find_element(self, @parent_element)
       obj.disabled?
     end
 
@@ -205,15 +220,15 @@ require_relative '../finders'
     end
 
     def value
-      find_element(self).value
+      find_element(self, @parent_element).value
     end
 
     def text
-      find_element(self).text
+      find_element(self, @parent_element).text
     end
 
     def clear
-      find_element(self).native.clear
+      find_element(self, @parent_element).native.clear
     end
 
     # Hover the cursor over an object
@@ -222,27 +237,27 @@ require_relative '../finders'
     #   basket_link.hover
     # @note does not appear to be implemented in the new firefox driver
     def hover
-      obj = find_element(self)
+      obj = find_element(self, @parent_element)
       obj.hover
     end
 
     def drag_by(right_offset, down_offset)
-      obj = find_element(self)
+      obj = find_element(self, @parent_element)
       obj.drag_by(right_offset, down_offset)
     end
 
     def [](attrib)
-      obj = find_element(self)
+      obj = find_element(self, @parent_element)
       obj[attrib]
     end
 
     def get_native_attribute(attrib)
-      obj = find_element(self)
+      obj = find_element(self, @parent_element)
       obj.native.attribute(attrib)
     end
 
     def native
-      @element ||= find_element self
+      @element ||= find_element self, @parent_element
     end
 
   end #Element

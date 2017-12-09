@@ -7,7 +7,7 @@ module DATPages
 
     attr_reader :desired_caps, :os
     attr_accessor :server_address, :server_port, :server_wait_time, :default_wait_time, :driver_for, :device, :web_browser,
-                  :orientation, :browser_resolution, :driver_paths
+                  :orientation, :browser_resolution, :driver_paths, :finder
 
 
     def initialize(os='android')
@@ -16,6 +16,7 @@ module DATPages
       @server_port = 4723
       @server_wait_time = 3
       @default_wait_time = 5
+      @finder = :default
     end
 
     # set the os and change the desired capabilities accordingly
