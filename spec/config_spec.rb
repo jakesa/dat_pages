@@ -96,4 +96,18 @@ describe DATPages::Config do
     expect(result).to eq nil
   end
 
+  it 'should load config from file' do
+    config = DATPages::Config.load(File.expand_path(File.join(File.dirname(__FILE__), './test_config.json')))
+    expect(config.nil?).to eq false
+    expect(config.testProp1).to eq "test1"
+    expect(config.testProp2).to eq "test2"
+  end
+
+  it 'should return a warning if the file does not exist when loading the config' do
+    config = DATPages::Config.load(File.expand_path(File.join(File.dirname(__FILE__), './test_config.rb')))
+    expect(config.nil?).to eq false
+    expect(config.testProp1).to eq nil
+    expect(config.testProp2).to eq nil
+  end
+
 end

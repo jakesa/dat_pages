@@ -37,6 +37,11 @@ module DATPages
     @config
   end
 
+  # load a config object from a JSON file
+  def load_config(file_path)
+    @config = DATPages::Config.load(file_path)
+  end
+
   # reset the global config
   # @return [DATPages::Config]
   def reset

@@ -9,6 +9,24 @@ module DATPages
     attr_accessor :server_address, :server_port, :server_wait_time, :default_wait_time, :driver_for, :device, :web_browser,
                   :orientation, :browser_resolution, :driver_paths, :finder
 
+    def self.load(file_path)
+      #check to see that the file exists
+      if File.exists? file_path
+        file = File.read file_path
+        file_hash = JSON.parse(file)
+        config = new
+        file_hash.each do |field, value|
+          config.send("#{field}=", value)
+        end
+        config
+      else
+        puts "File Not Found: #{file_path}. Loading default config."
+        new
+      end
+      #If it doesnt, print out a warning and return a new default instance of config
+      #If it does, parse the file, load the values into their coorisponding properties and return the instance
+    end
+
 
     def initialize(os='android')
       self.os = os
@@ -28,6 +46,8 @@ module DATPages
     def url
       "http://#{@server_address}:#{@server_port}/wd/hub"
     end
+
+
 
     def method_missing(name, *args, &block)
       value = args[0]

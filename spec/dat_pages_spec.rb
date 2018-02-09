@@ -105,4 +105,11 @@ describe DATPages do
   #   expect(result).to eq true
   # end
 
+  it 'should load config from file' do
+    config = DATPages.load_config(File.expand_path(File.join(File.dirname(__FILE__), './test_config.json')))
+    expect(config.nil?).to eq false
+    expect(config.testProp1).to eq "test1"
+    expect(config.testProp2).to eq "test2"
+  end
+
 end
