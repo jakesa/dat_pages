@@ -33,8 +33,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'ffi', '1.9.18'
   spec.add_development_dependency 'pry'
   spec.add_development_dependency 'thor'
-  spec.add_development_dependency 'rspec'
+  spec.add_development_dependency 'rspec', '3.6.0'
   spec.add_dependency 'capybara', '~> 2.15.1'
-  spec.add_development_dependency 'selenium-webdriver'
-  spec.add_development_dependency 'sinatra'
+  spec.add_development_dependency 'selenium-webdriver', '3.8.0'
+  spec.add_development_dependency 'sinatra', '1.4.7'
 end
