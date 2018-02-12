@@ -110,4 +110,12 @@ describe DATPages::Config do
     expect(config.testProp2).to eq nil
   end
 
+  it 'should return a hash from #to_hash' do
+    expect(DATPages.config.to_hash.class).to eq Hash
+  end
+
+  it 'should return a json string from #to_json' do
+    expect(DATPages.config.to_json.class).to eq String
+  end
+
 end

@@ -112,4 +112,30 @@ describe DATPages do
     expect(config.testProp2).to eq "test2"
   end
 
+  it 'should write a load config file to the location specified' do
+    file_path = File.expand_path(File.join(File.dirname(__FILE__), "./test_config#{Time.now.to_i.to_s}.json"))
+    DATPages.write_config_file(file_path)
+    begin
+      expect(File.exists? file_path).to eq true
+    rescue => e
+        raise e
+    ensure
+      File.delete file_path
+    end
+  end
+
+  it 'should write a load config file to a default location if no path is specified' do
+    Dir.chdir "./spec"
+    file_path = DATPages.write_config_file
+    puts file_path
+    begin
+      expect(File.exists? file_path).to eq true
+    rescue => e
+      raise e
+    ensure
+      File.delete file_path
+      Dir.chdir '..'
+    end
+  end
+
 end

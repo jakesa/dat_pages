@@ -1,13 +1,14 @@
 require 'appium_lib'
 require_relative 'capabilities'
+require_relative 'custom_accessor'
 
 module DATPages
 
   class Config
+    extend CustomAccessor
 
-    attr_reader :desired_caps, :os
-    attr_accessor :server_address, :server_port, :server_wait_time, :default_wait_time, :driver_for, :device, :web_browser,
-                  :orientation, :browser_resolution, :driver_paths, :finder
+    custom_attr_accessor :server_address, :server_port, :server_wait_time, :default_wait_time, :driver_for, :device, :web_browser,
+                  :orientation, :browser_resolution, :driver_paths, :finder, :desired_caps, :os
 
     def self.load(file_path)
       #check to see that the file exists
@@ -45,6 +46,18 @@ module DATPages
 
     def url
       "http://#{@server_address}:#{@server_port}/wd/hub"
+    end
+
+    def to_json
+      JSON.generate to_hash
+    end
+
+    def to_hash
+      hash = {}
+      self.class.attrs.each do |prop|
+        hash[prop] = send(prop)
+      end
+      hash
     end
 
 
