@@ -40,6 +40,41 @@ module DATPages
     @config
   end
 
+  # load a config object from a JSON file
+  def load_config(file_path)
+    @config = DATPages::Config.load(file_path)
+  end
+
+  # write config to a json file
+  # @param file_path <String> the path to the file you want to write to
+  def write_config_file(file_path=nil)
+    if file_path.nil?
+      #generate a json file named dat_pages_config.json in the features/support directory of the current project and return the location of the file as a string
+      begin
+        file_path = File.expand_path(File.join("./features/support", "./test_config.json"))
+        file = File.new(file_path, 'w+')
+        file.write config.to_json
+        file.close
+        file_path
+      rescue => e
+        puts e.message
+        puts e.backtrace
+        nil
+      end
+    else
+      #generate a json file at the location specified
+      #return a boolean indicating weather or not the writing was successful
+      begin
+        file = File.new(file_path, 'w+')
+        file.write config.to_json
+        file.close
+        true
+      rescue
+        false
+      end
+    end
+  end
+
   # reset the global config
   # @return [DATPages::Config]
   def reset
