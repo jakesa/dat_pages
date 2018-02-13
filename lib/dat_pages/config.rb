@@ -14,7 +14,7 @@ module DATPages
       #check to see that the file exists
       if File.exists? file_path
         file = File.read file_path
-        file_hash = JSON.parse(file)
+        file_hash = JSON.parse(file, {symbolize_names: true})
         config = new
         file_hash.each do |field, value|
           config.send("#{field}=", value)
