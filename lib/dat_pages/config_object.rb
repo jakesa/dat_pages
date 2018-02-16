@@ -55,12 +55,15 @@ module DATPages
     def to_hash
       hash = {}
       self.class.attrs.each do |prop|
-        hash[prop] = send(prop)
+        hash[prop] =
+          if prop == :desired_caps
+            send(prop).to_hash
+          else
+            send(prop)
+          end
       end
       hash
     end
-
-
 
     def method_missing(name, *args, &block)
       value = args[0]
