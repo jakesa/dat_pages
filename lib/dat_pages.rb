@@ -1,5 +1,5 @@
 require_relative 'dat_pages/version'
-require_relative 'dat_pages/config'
+require_relative 'dat_pages/config_object'
 require_relative 'dat_pages/appium/appium_server'
 require_relative '../lib/dat_pages/driver_connection'
 require_relative 'dat_pages/web_driver/web_driver'
