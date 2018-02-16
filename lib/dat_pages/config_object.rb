@@ -8,7 +8,7 @@ module DATPages
     extend CustomAccessor
 
     custom_attr_accessor :server_address, :server_port, :server_wait_time, :default_wait_time, :driver_for, :device, :web_browser,
-                  :orientation, :browser_resolution, :driver_paths, :finder, :desired_caps, :os
+                  :orientation, :browser_resolution, :driver_paths, :finder, :os, :desired_caps
 
     def self.load(file_path)
       #check to see that the file exists
@@ -17,7 +17,13 @@ module DATPages
         file_hash = JSON.parse(file, {symbolize_names: true})
         config = new
         file_hash.each do |field, value|
-          config.send("#{field}=", value)
+          if field == :desired_caps
+            value[:caps].each do |k, v|
+              config.desired_caps.send("#{k}=", v)
+            end
+          else
+            config.send("#{field}=", value)
+          end
         end
         config
       else
