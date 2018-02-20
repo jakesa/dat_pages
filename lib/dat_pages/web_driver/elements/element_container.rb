@@ -91,7 +91,7 @@ module DATPages
         when 3
           {name: args[0], class_name: args[1], locator: args[2]}
         when 4
-          {name: args[0], class_name: args[1], find_by: args[2], locator: args[4]}
+          {name: args[0], class_name: args[1], find_by: args[2], locator: args[3]}
         else
           raise ArgumentError.new("Wrong number of arguments. Expected 2..4, got #{args.length}")
       end
