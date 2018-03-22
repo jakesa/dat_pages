@@ -72,11 +72,11 @@ module DATPages
       Capybara.current_driver = :selenium_grid
 
       # # set browser size
-      # if !DATPages.config.browser_resolution.nil? && !DATPages.config.browser_resolution.empty?
-      #   set_browser_window_size DATPages.config.browser_resolution[:width], DATPages.config.browser_resolution[:height]
-      # else
-      #   set_browser_window_size 1200, 800
-      # end
+      if !DATPages.config.browser_resolution.nil? && !DATPages.config.browser_resolution.empty?
+        set_browser_window_size DATPages.config.browser_resolution[:width], DATPages.config.browser_resolution[:height]
+      else
+        set_browser_window_size 1200, 800
+      end
       # binding.pry
       DATPages::WebDriver::Driver.instance
     end
