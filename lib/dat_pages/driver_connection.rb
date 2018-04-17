@@ -3,6 +3,7 @@ require 'capybara/dsl'
 require_relative 'errors'
 require_relative '../../lib/dat_pages/appium/driver'
 require_relative '../../lib/dat_pages/web_driver/driver'
+require_relative '../../lib/dat_pages/web_api/driver'
 
 
 
@@ -33,6 +34,10 @@ module DATPages
 
     def self.appium
       DATPages::Driver.instance
+    end
+
+    def self.web_api
+      DATPages::WebAPI::Driver.instance
     end
 
     def self.local_browser
